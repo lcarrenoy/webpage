@@ -1,6 +1,6 @@
 ---
 title: "Luis Carreño"
-image: luis.JPEG
+image: luis.JPG
 resources: Resume.pdf
 about: 
     template:   trestles
@@ -47,4 +47,5 @@ Experto en unir las finanzas y la ciencia de datos para impulsar la toma de deci
 
 \| Tableau \| Data Studio \| SAP.
 
-![](bg-masthead.jpg){withd="10%"}
+ 
+
