@@ -18,7 +18,7 @@ library(DT)
 ## Power Automate
 
 ```{r powerautomate-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/PowerAutomate.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/PowerAutomate.png")
 ```
 
 **Function:** Microsoft tool for automating workflows and connecting different applications and services within the Microsoft ecosystem.
@@ -30,7 +30,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Powe
 ## Make
 
 ```{r make-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/make.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/make.png")
 ```
 
 **Function:** Visual automation platform that connects over 1,000 applications using flowchart diagrams and advanced data transformations.
@@ -42,7 +42,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/make
 ## N8N
 
 ```{r n8n-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/N8N.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/N8N.png")
 ```
 
 **Function:** Open-source automation tool that allows creating complex workflows with a visual node-based interface and self-hosting capabilities.
@@ -56,7 +56,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/N8N.
 ## Power Apps
 
 ```{r powerapps-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Powerapps.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/Powerapps.png")
 ```
 
 **Function:** Microsoft's low-code platform for creating business applications without advanced programming, integrated with Microsoft 365.
@@ -68,7 +68,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Powe
 ## Bubble.io
 
 ```{r bubble-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Bubble.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/Bubble.png")
 ```
 
 **Function:** No-code platform for building web applications with visual programming, database management, and hosting included.
@@ -80,7 +80,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Bubb
 ## Flutter
 
 ```{r flutter-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Flutter.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/Flutter.png")
 ```
 
 **Function:** Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase using Dart language.
@@ -92,7 +92,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Flut
 ## Airtable
 
 ```{r airtable-img, fig.align='center', out.width='300px'}
-knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Airtable.png")
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/Airtable.png")
 ```
 
 **Function:** Collaborative database platform that combines spreadsheets with automation capabilities, multiple views, and application development features.
