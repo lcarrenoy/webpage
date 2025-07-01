@@ -101,7 +101,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/Air
 
 ---
 
-# COMPLETE TOOLS OVERVIEW
+# Complete Tools Overview
 
 ```{r complete-overview}
 # Create comprehensive overview
