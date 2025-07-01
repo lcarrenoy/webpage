@@ -1,0 +1,101 @@
+---
+title: "Stastistics"
+format: 
+  html:
+    link-external-newwindow: true
+editor: visual
+---
+
+# **STATISTICIAN R COURSES**
+
+## **FOUNDATIONAL STATISTICS**
+
+**Statistician**
+
+-   **Function:** Professional role combining statistical theory, R programming, and data analysis expertise for research and business insights
+-   **Website:** [https://www.amstat.org](https://www.amstat.org){target="_blank"}
+-   **Cost Model:** Career Path
+
+**Introduction to Statistics in R**
+
+-   **Function:** Comprehensive introduction to statistical concepts and R programming fundamentals for data analysis and visualization
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Foundations of Probability in R**
+
+-   **Function:** Core probability theory, distributions, and random variables using R for statistical modeling and inference
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Foundations of Inference in R**
+
+-   **Function:** Statistical inference principles including confidence intervals, hypothesis testing, and p-values using R programming
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+## **REGRESSION & MODELING**
+
+**Introduction to Regression in R**
+
+-   **Function:** Linear regression fundamentals, model building, diagnostics, and interpretation using R statistical packages
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Intermediate Regression in R**
+
+-   **Function:** Advanced regression techniques including multiple regression, polynomial regression, and model selection strategies
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Hierarchical and Mixed Effects Models in R**
+
+-   **Function:** Multi-level modeling, random effects, and nested data analysis using lme4 and similar R packages
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+## **SPECIALIZED ANALYSIS METHODS**
+
+**Sampling in R**
+
+-   **Function:** Sampling theory, survey design, and sampling distributions with practical R implementations for data collection
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Hypothesis Testing in R**
+
+-   **Function:** Statistical hypothesis testing, t-tests, ANOVA, chi-square tests, and non-parametric methods using R
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Experimental Design in R**
+
+-   **Function:** Design of experiments, randomization, blocking, factorial designs, and analysis using R statistical tools
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Analyzing Survey Data in R**
+
+-   **Function:** Survey data analysis techniques, weighting, complex sampling designs, and survey package utilization in R
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+## **ADVANCED STATISTICAL METHODS**
+
+**Survival Analysis in R**
+
+-   **Function:** Time-to-event analysis, Kaplan-Meier curves, Cox regression, and survival modeling using R survival packages
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Fundamentals of Bayesian Data Analysis in R**
+
+-   **Function:** Bayesian inference, MCMC methods, prior distributions, and posterior analysis using R and Stan/JAGS
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription
+
+**Factor Analysis in R**
+
+-   **Function:** Exploratory and confirmatory factor analysis, dimensionality reduction, and latent variable modeling in R
+-   **Website:** <https://www.datacamp.com>
+-   **Cost Model:** Subscription

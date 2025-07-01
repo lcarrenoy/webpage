@@ -1,0 +1,49 @@
+---
+title: "Luis Carreño"
+image: luis.JPG
+resources: Resume.pdf
+about: 
+    template:   trestles
+    links: 
+      - text: Email
+        icon: envelope
+        href: mailto:lcarrenoy@uni.pe
+        
+      - text: Github
+        icon: github
+        href: https://github.com/lcarrenoy
+        
+      - text: Linkedin
+        icon: linkedin
+        href: https://www.linkedin.com/in/luis-alberto-carreño/             
+    
+      - text: Resume
+        icon: file-text
+        href: Resume.pdf
+        
+format:
+  html:
+    link-external-newwindow: true        
+    code-link: true 
+    code-fold: show 
+    execute:
+      echo: false 
+---
+
+<center>
+
+::: {.btn-group role="group" aria-label="About"}
+<a href="about.html"> <button type="button" class="btn btn-primary me-md-2 btn-sm">English</button></a> <a href="about-pt.html"> <button type="button" class="btn btn-primary me-md-2 btn-sm">Português</button></a> <a href="about-es.html"> <button type="button" class="btn btn-primary me-md-2 btn-sm">Español</button></a>
+:::
+
+</center>
+
+**Formação Acadêmica:** Profissional em tecnologia com formação em Engenharia Industrial pela [UNI](https://portal.uni.edu.pe/) e especialização em Logística pela [ESAN](https://www.esan.edu.pe/) e [TEC de Monterrey](https://tec.mx/es?srsltid=AfmBOorDM30kLhVWh3DuqT0o6DslXO4_scGdN7Zu6TyV6ibhytGe00kd).
+
+**Experiência:** Mais de 7 anos resolvendo problemas complexos através de automação, análise de dados, engenharia de dados e visualização.
+
+**Linguagens de Programação:** Python \| Java \| C++ \| SQL \| HTML e CSS.
+
+**Automação e Desenvolvimento:** Power Automate \| Make \| N8N \| Power Apps \| Glide \| Bubble \| Flutter \| Airtable
+
+**Software e Ferramentas:** Power Query \| R \| Excel \| BigQuery \| PostgreSQL \| Power BI \| Tableau \| Looker Studio \| Google Cloud \| OpenAI API \| AI Google Studio \| LangChain \| AWS.

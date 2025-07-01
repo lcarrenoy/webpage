@@ -1,0 +1,598 @@
+---
+title: "Data Engineer"
+subtitle: "100 Days to Become a Data Engineer"
+output: 
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+---
+
+## Program Overview
+
+This is an intensive 100-day program designed to train a Data Engineer from fundamentals to advanced projects. The plan includes key technologies, constant practice, and real-world projects.
+
+## Program Structure
+
+### Phase 1: Fundamentals (Days 1-13)
+
+#### SQL - Relational Databases (Days 1-4)
+
+-   **Day 1**: SQL introduction and basic commands (SELECT, FROM, WHERE)
+-   **Day 2**: Aggregation functions (SUM, AVG, COUNT), GROUP BY, HAVING, JOINs
+-   **Day 3**: Subqueries, CTEs, table creation, optimization
+-   **Day 4**: **Practice**: Database construction and complex queries
+
+#### Python for Data Engineering (Days 5-9)
+
+-   **Day 5**: Basic syntax, variables, control structures
+-   **Day 6**: Functions, modules, file manipulation (CSV, TXT)
+-   **Day 7**: Exception handling, libraries (pandas, numpy, json, requests)
+-   **Day 8**: **Practice**: Data cleaning and transformation with pandas
+-   **Day 9**: **Project**: API data extraction and CSV storage
+
+#### Linux and Bash (Days 10-13)
+
+-   **Day 10**: Linux basics, fundamental commands
+-   **Day 11**: Permissions, users, pipes, redirections, bash scripts, SSH
+-   **Day 12**: **Practice**: Cron jobs for periodic tasks
+-   **Day 13**: **Practice**: Bash script for file cleanup and organization
+
+``` bash
+#!/bin/bash
+# Example: Data processing bash script
+
+LOG_DIR="/var/log/data_pipeline"
+DATA_DIR="/data/raw"
+PROCESSED_DIR="/data/processed"
+
+# Create log entry
+log_message() {
+    echo "$(date): $1" >> "$LOG_DIR/pipeline.log"
+}
+
+# Process CSV files
+process_files() {
+    for file in "$DATA_DIR"/*.csv; do
+        if [ -f "$file" ]; then
+            filename=$(basename "$file")
+            log_message "Processing $filename"
+            
+            # Run Python processing script
+            python3 /scripts/process_data.py "$file" "$PROCESSED_DIR/$filename"
+            
+            if [ $? -eq 0 ]; then
+                log_message "Successfully processed $filename"
+                mv "$file" "$DATA_DIR/archive/"
+            else
+                log_message "Error processing $filename"
+            fi
+        fi
+    done
+}
+
+process_files
+```
+
+### Phase 2: Big Data and Advanced Tools (Days 14-23)
+
+#### Big Data and Hadoop (Days 14-16)
+
+-   **Day 14**: Big Data concepts, Hadoop, HDFS, MapReduce
+-   **Day 15**: Hadoop ecosystem (Pig, Hive, HBase), SQL queries in Big Data
+-   **Day 16**: Data modeling, Data Warehouse, normalization/denormalization
+
+#### Data Pipelines with Apache Airflow (Days 17-20)
+
+-   **Day 17**: Pipeline introduction, Apache Airflow, DAGs
+-   **Day 18**: Connections, variables, operators, database integration
+-   **Day 19**: **Practice**: DAG for daily Python script execution
+-   **Day 20**: **Project**: Simple ETL flow with Airflow
+
+``` python
+# Example: Airflow DAG for ETL pipeline
+from airflow import DAG
+from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash_operator import BashOperator
+from datetime import datetime, timedelta
+
+default_args = {
+    'owner': 'data-team',
+    'depends_on_past': False,
+    'start_date': datetime(2024, 1, 1),
+    'email_on_failure': True,
+    'email_on_retry': False,
+    'retries': 2,
+    'retry_delay': timedelta(minutes=5)
+}
+
+def extract_data(**context):
+    """Extract data from source"""
+    # Implementation here
+    pass
+
+def transform_data(**context):
+    """Transform extracted data"""
+    # Implementation here
+    pass
+
+def load_data(**context):
+    """Load data to destination"""
+    # Implementation here
+    pass
+
+dag = DAG(
+    'daily_etl_pipeline',
+    default_args=default_args,
+    description='Daily ETL pipeline',
+    schedule_interval='@daily',
+    catchup=False
+)
+
+extract_task = PythonOperator(
+    task_id='extract_data',
+    python_callable=extract_data,
+    dag=dag
+)
+
+transform_task = PythonOperator(
+    task_id='transform_data',
+    python_callable=transform_data,
+    dag=dag
+)
+
+load_task = PythonOperator(
+    task_id='load_data',
+    python_callable=load_data,
+    dag=dag
+)
+
+# Set task dependencies
+extract_task >> transform_task >> load_task
+```
+
+#### Apache Spark (Days 21-23)
+
+-   **Day 21**: Spark architecture, installation, RDDs, DataFrames
+-   **Day 22**: DataFrame operations, Spark SQL
+-   **Day 23**: **Practice**: CSV file processing with Spark
+
+``` python
+# Example: Spark DataFrame operations
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, sum, avg, when, isnan, count
+
+# Initialize Spark Session
+spark = SparkSession.builder \
+    .appName("DataProcessing") \
+    .config("spark.sql.adaptive.enabled", "true") \
+    .getOrCreate()
+
+# Read data
+df = spark.read.option("header", "true").csv("path/to/data.csv")
+
+# Data quality checks
+def data_quality_report(df):
+    """Generate data quality report"""
+    total_rows = df.count()
+    
+    quality_report = df.select([
+        count(when(isnan(c) | col(c).isNull(), c)).alias(c + "_nulls")
+        for c in df.columns
+    ]).collect()[0].asDict()
+    
+    return {
+        'total_rows': total_rows,
+        'null_counts': quality_report
+    }
+
+# Transformations
+processed_df = df \
+    .filter(col("amount") > 0) \
+    .withColumn("amount_category", 
+                when(col("amount") < 100, "low")
+                .when(col("amount") < 1000, "medium")
+                .otherwise("high")) \
+    .groupBy("category", "amount_category") \
+    .agg(
+        sum("amount").alias("total_amount"),
+        avg("amount").alias("avg_amount"),
+        count("*").alias("transaction_count")
+    )
+
+# Write results
+processed_df.write \
+    .mode("overwrite") \
+    .parquet("path/to/output")
+```
+
+### Phase 3: Intermediate Projects (Days 24-32)
+
+#### Specialized Practical Projects
+
+**Day 24: Advanced SQL Project** - Complex database design with multiple related tables - Implementation of complex queries with subqueries and CTEs - Query optimization with indexes and execution plan analysis - Creation of views, stored procedures, and triggers
+
+**Day 25: Enterprise ETL Pipeline** **Objective**: Create pipeline that extracts sales data from multiple sources - **Sources**: CSV files, relational databases, REST APIs - **Transformations**: Cleaning, standardization, data enrichment - **Destination**: Data Warehouse (Google BigQuery/Amazon Redshift) - **Technologies**: Python, pandas, SQL, cloud storage - **Deliverables**: Process documentation, versioned code, quality reports
+
+**Day 26: Weather Data Project** **Use case**: Real-time climate analysis system - **Extraction**: Weather API (OpenWeatherMap/Weather API) - **Processing**: Apache Spark for distributed transformations - **Storage**: SQL database optimized for time series - **Features**: Missing data handling, anomaly detection, temporal aggregations - **Deliverables**: Visualization dashboard, automatic alerts
+
+**Day 27: Big Data Processing** **Challenge**: Process CSV file \>1GB with Apache Spark - **Dataset**: Financial transaction data or server logs - **Operations**: Complex aggregations, multi-criteria filtering - **Optimization**: Partitioning, caching, Spark configuration - **Storage**: Data Warehouse with star schema - **Metrics**: Processing time, memory usage, throughput
+
+**Day 28: Enterprise Report Automation** **Complete system**: Automated daily sales reports - **Source**: SQL database with transactional data - **Processing**: Spark for aggregations and complex calculations - **Orchestration**: Apache Airflow for automatic scheduling - **Outputs**: PDF reports, web dashboards, email notifications - **Features**: Error handling, retries, detailed logs
+
+**Days 29-32: Development and Refinement** - **Day 29**: Integration of projects into personal portfolio - **Day 30**: Performance and scalability optimization - **Day 31**: Implementation of unit and integration tests - **Day 32**: Technical documentation and project presentations
+
+### Phase 4: Advanced Technologies (Days 33-49)
+
+#### Distributed Systems and NoSQL (Days 33-36)
+
+-   **Day 33**: Distributed computing, distributed system architectures
+-   **Day 34**: NoSQL databases (MongoDB, Cassandra), Parquet/ORC formats
+-   **Day 35**: **Practice**: Migration of SQL project to NoSQL
+-   **Day 36**: **Practice**: Parquet format storage with Spark
+
+#### Data Governance and Quality (Days 37-40)
+
+-   **Day 37**: Introduction to Data Governance, frameworks and responsibilities
+-   **Day 38**: Data Governance Framework
+-   **Day 39**: Data quality, Data Profiling, quality dimensions
+-   **Day 40**: Data Catalog, metadata management, taxonomies
+
+#### Web Scraping (Days 41-49)
+
+**Fundamentals and Tools (Days 41-44)** - **Days 41-42**: HTML/CSS, BeautifulSoup, Scrapy, form and session handling - **Day 43**: Data cleaning, cookie and session management, JavaScript handling - **Day 44**: Intelligent crawling, detection evasion, legal and ethical considerations
+
+**Practical Web Scraping Projects (Days 45-49)**
+
+**Day 45: E-commerce Price Monitor** **Project**: Product price monitoring system - **Objective**: Extract prices from multiple e-commerce sites - **Technologies**: Scrapy, requests, BeautifulSoup, pandas - **Features**: - Handle different HTML structures - User agent and proxy rotation - Price history storage - Change detection and alerts - **Deliverables**: Price database, trend dashboard
+
+``` python
+# Example: Price monitoring scraper
+import scrapy
+from scrapy.http import Request
+import pandas as pd
+from datetime import datetime
+
+class PriceSpider(scrapy.Spider):
+    name = 'price_monitor'
+    
+    def __init__(self, products_file=None):
+        self.products = pd.read_csv(products_file)
+        
+    def start_requests(self):
+        for _, product in self.products.iterrows():
+            yield Request(
+                url=product['url'],
+                callback=self.parse_price,
+                meta={'product_id': product['id'], 'name': product['name']}
+            )
+    
+    def parse_price(self, response):
+        # Extract price using CSS selectors
+        price_text = response.css('.price::text').get()
+        if price_text:
+            price = float(price_text.replace('$', '').replace(',', ''))
+            
+            yield {
+                'product_id': response.meta['product_id'],
+                'product_name': response.meta['name'],
+                'price': price,
+                'url': response.url,
+                'scraped_at': datetime.now(),
+                'availability': response.css('.availability::text').get()
+            }
+```
+
+**Day 46: News Aggregator System** **Project**: Automatic news aggregator - **Objective**: Monitor multiple news sites and extract headlines - **Functionalities**: - Extract headlines, dates, categories - Automatic topic classification - Duplicate news detection - RSS feed integration - **Technologies**: Scrapy spiders, basic NLP, cron scheduling - **Deliverables**: News API, trend dashboard
+
+**Days 47-49: Advanced Projects** - **Day 47**: **Social Media Analytics**: Public social media data scraper - **Day 48**: **Real Estate Monitor**: Property monitoring system - **Day 49**: **Job Market Analysis**: Job posting extraction for market analysis
+
+### Phase 5: Cloud Computing (Days 50-57)
+
+#### Cloud Platforms (Days 50-57)
+
+**Services covered:** - **AWS**: S3, Lambda, Redshift, Kinesis, EMR, Glue, RDS - **Google Cloud**: BigQuery, Dataflow, Dataproc, Cloud Storage, Pub/Sub\
+- **Azure**: Data Lake, SQL Database, Stream Analytics, HDInsight
+
+**Objectives:** - Design scalable infrastructures - Distributed storage - Real-time and batch processing
+
+``` python
+# Example: AWS S3 data processing with Lambda
+import boto3
+import pandas as pd
+from io import StringIO
+import json
+
+def lambda_handler(event, context):
+    """Process CSV files uploaded to S3"""
+    
+    s3_client = boto3.client('s3')
+    
+    # Get bucket and key from event
+    bucket = event['Records'][0]['s3']['bucket']['name']
+    key = event['Records'][0]['s3']['object']['key']
+    
+    try:
+        # Read CSV from S3
+        response = s3_client.get_object(Bucket=bucket, Key=key)
+        csv_content = response['Body'].read().decode('utf-8')
+        
+        # Process with pandas
+        df = pd.read_csv(StringIO(csv_content))
+        
+        # Data transformations
+        processed_df = df.groupby('category').agg({
+            'amount': ['sum', 'mean', 'count'],
+            'date': ['min', 'max']
+        }).round(2)
+        
+        # Save processed data
+        output_key = f"processed/{key.replace('.csv', '_processed.csv')}"
+        s3_client.put_object(
+            Bucket=bucket,
+            Key=output_key,
+            Body=processed_df.to_csv(index=False)
+        )
+        
+        return {
+            'statusCode': 200,
+            'body': json.dumps(f'Successfully processed {key}')
+        }
+        
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps(f'Error processing {key}: {str(e)}')
+        }
+```
+
+#### Data Streaming - Specialized Projects (Days 58-71)
+
+**Streaming Fundamentals (Days 58-63)** **Tools**: Apache Kafka, Apache Flink, Apache Storm, AWS Kinesis, Google Dataflow
+
+**Key concepts**: - Real-time vs batch data processing - Event-driven architectures and microservices - Windowing and temporal aggregations - Exactly-once processing and fault tolerance
+
+**Days 64-67: Project 1 - Real-time Log Analysis System** **Use case**: Enterprise web application monitoring
+
+**Day 64: Architecture and Setup** - Apache Kafka configuration as message broker - Apache Flink setup for stream processing - Elasticsearch configuration for storage - Pipeline design: Logs → Kafka → Flink → Elasticsearch
+
+**Day 65: Ingestion and Processing** - Implementation of producers for sending logs to Kafka - Development of Flink jobs for: - Log filtering by severity - Time window aggregations - Anomaly pattern detection - Data enrichment
+
+``` python
+# Example: Kafka producer for log streaming
+from kafka import KafkaProducer
+import json
+import logging
+from datetime import datetime
+
+class LogProducer:
+    def __init__(self, bootstrap_servers=['localhost:9092']):
+        self.producer = KafkaProducer(
+            bootstrap_servers=bootstrap_servers,
+            value_serializer=lambda v: json.dumps(v).encode('utf-8'),
+            key_serializer=lambda k: k.encode('utf-8') if k else None
+        )
+    
+    def send_log(self, log_level, message, service_name, user_id=None):
+        """Send log message to Kafka topic"""
+        log_entry = {
+            'timestamp': datetime.utcnow().isoformat(),
+            'level': log_level,
+            'message': message,
+            'service': service_name,
+            'user_id': user_id
+        }
+        
+        topic = f"logs-{log_level.lower()}"
+        key = service_name
+        
+        try:
+            self.producer.send(topic, value=log_entry, key=key)
+            self.producer.flush()
+        except Exception as e:
+            logging.error(f"Failed to send log: {e}")
+```
+
+**Day 66: Alerts and Monitoring** - Real-time alert system for critical errors - Real-time dashboard with Grafana - Performance metrics implementation - Automatic notification configuration
+
+**Day 67: Optimization and Testing** - Load testing with massive log generation - Throughput and latency optimization - Backpressure handling implementation - System documentation
+
+**Days 68-71: Project 2 - Real-time Trading Platform** **Use case**: Financial analysis system for algorithmic trading
+
+**Day 68: Financial Data Ingestion** - Integration with financial data APIs (Alpha Vantage, Yahoo Finance) - Kafka configuration for price streaming - Schema registry implementation for data evolution - Multiple topics setup per financial instrument
+
+**Day 69: Trading Signal Processing** - Real-time technical indicators implementation: - Moving averages (SMA, EMA) - RSI, MACD, Bollinger Bands - Trading pattern detection - Real-time risk calculation
+
+**Day 70: Alert and Execution System** - Buy/sell signal generation - Push alert system for opportunities - Order execution simulation - Portfolio performance tracking
+
+**Day 71: Dashboard and Analysis** - Interactive dashboard with real-time visualizations - Trading system performance metrics - Latency and throughput analysis - Simulated profitability reports
+
+**Technologies used in both projects**: - **Message Brokers**: Apache Kafka, AWS Kinesis - **Stream Processing**: Apache Flink, Apache Storm - **Storage**: Elasticsearch, InfluxDB, AWS S3 - **Visualization**: Grafana, custom dashboards - **Monitoring**: Prometheus, custom metrics
+
+### Phase 7: Final Project (Days 72-100)
+
+#### Capstone Project - Complete ETL Pipeline (Days 72-100)
+
+**Objective**: Develop an end-to-end data pipeline that solves a real business problem.
+
+##### Strategic Planning (Days 72-75)
+
+**Day 72: Problem Identification and Objective Definition** - Select a real use case (sales optimization, log analysis, real-time processing) - Define SMART project objectives - Identify success metrics and KPIs - Document the business problem to solve
+
+**Day 73: Pipeline Architecture Design** - Create high-level architecture diagram - Define data flow: sources → transformation → storage → consumption - Select technology stack (Python, Spark, Airflow, Cloud) - Design data schema and storage structure
+
+**Day 74: Data Source Definition** - Identify and catalog all data sources - Evaluate APIs, databases, CSV files, logs - Search for public datasets or generate simulated data if necessary - Document structure and format of each source
+
+**Day 75: Infrastructure Configuration** - **Cloud**: Configure AWS/GCP/Azure (S3/GCS, EMR/Dataproc, Redshift/BigQuery) - **Local**: Configure virtual environment with Python, Spark, Airflow - Establish connections between services - Configure security and permissions
+
+##### Environment Setup (Days 76-79)
+
+**Day 76: Orchestration Configuration** - Install and configure Apache Airflow - Create base DAG for task sequence - Configure connections and environment variables - Establish execution scheduling
+
+**Day 77: Database Configuration** - Configure SQL/NoSQL databases for storage - Create necessary schemas and tables - Configure indexes for optimization - Establish backup and recovery policies
+
+**Day 78: Version Control and Documentation** - Configure Git repository with proper structure - Create .gitignore and configuration files - Establish code and documentation conventions - Configure basic CI/CD
+
+**Day 79: Monitoring Configuration** - Implement detailed logging for each stage - Configure monitoring tools (Prometheus, Grafana) - Establish alerts and notifications - Create pipeline monitoring dashboards
+
+##### ETL Development (Days 80-90)
+
+**Days 80-82: Data Extraction (Extract)** - **Day 80**: Python extraction script development - **Day 81**: Real-time API consumption implementation - **Day 82**: Initial cleaning and validation of extracted data
+
+**Days 83-87: Data Transformation (Transform)** - **Day 83**: Transformation rules definition (aggregations, filtering, normalization) - **Day 84**: Spark/pandas transformation development - **Day 85**: Data quality checks implementation - **Day 86**: Transformation testing and optimization - **Day 87**: Validation with large datasets
+
+**Days 88-90: Data Loading (Load)** - **Day 88**: Data Warehouse loading process configuration - **Day 89**: Complete ETL pipeline integration - **Day 90**: Airflow automation and execution scheduling
+
+##### Optimization and Finalization (Days 91-100)
+
+**Days 91-93: Optimization and Security** - **Day 91**: SQL query and Spark process optimization - **Day 92**: Security implementation (encryption, RBAC) - **Day 93**: Scalability and performance testing
+
+**Days 94-96: Documentation and Visualization** - **Day 94**: Complete pipeline and process documentation - **Day 95**: Dashboard creation with Tableau/Power BI - **Day 96**: Final results report preparation
+
+**Days 97-100: Review and Presentation** - **Day 97**: Complete review and error correction - **Day 98**: End-to-end testing - **Day 99**: Final presentation preparation - **Day 100**: Project presentation and final delivery
+
+## Technologies and Tools Covered
+
+### Programming Languages
+
+-   **SQL** - Queries, optimization, database management
+-   **Python** - Data manipulation, automation, APIs
+-   **Bash** - Automation, system administration
+
+### Big Data Tools
+
+-   **Apache Hadoop** - HDFS, MapReduce, complete ecosystem
+-   **Apache Spark** - Distributed processing, DataFrames, SQL
+-   **Apache Airflow** - Pipeline orchestration, DAGs
+
+### Databases
+
+-   **Relational** - MySQL, PostgreSQL, optimization
+-   **NoSQL** - MongoDB, Cassandra
+-   **Data Warehouses** - BigQuery, Redshift
+
+### Cloud Platforms
+
+-   **AWS** - S3, EMR, Redshift, Kinesis, Lambda, Glue
+-   **Google Cloud** - BigQuery, Dataflow, Dataproc
+-   **Microsoft Azure** - Data Lake, Stream Analytics
+
+### Streaming and Real-time
+
+-   **Apache Kafka** - Message streaming
+-   **Apache Flink** - Stream processing
+-   **AWS Kinesis** - Real-time data streaming
+
+## Learning Methodology
+
+### Daily Structure
+
+1.  **Theory** - Fundamental concepts
+2.  **Guided Practice** - Structured exercises\
+3.  **Projects** - Practical application
+4.  **Review** - Knowledge consolidation
+
+### Progressive Approach
+
+-   **Weeks 1-2**: Solid fundamentals
+-   **Weeks 3-7**: Intermediate tools
+-   **Weeks 8-11**: Advanced technologies
+-   **Weeks 12-14**: Independent project
+
+### Key Components
+
+-   **40% Theory** - Concepts and best practices
+-   **35% Practice** - Exercises and labs
+-   **25% Projects** - Real application
+
+## Expected Results
+
+Upon completing the 100 days, you will have:
+
+### Technical Skills
+
+-   SQL mastery for complex data analysis
+-   Python competency for data engineering
+-   Practical experience with Big Data tools
+-   Knowledge of scalable cloud architectures
+-   Ability to design robust ETL pipelines
+
+### Portfolio Projects
+
+Upon completing the program, you will have a robust portfolio with diverse projects:
+
+#### Fundamental Projects
+
+-   **Enterprise ETL Pipeline**: Complete system for extracting, transforming, and loading sales data
+-   **Advanced SQL Project**: Optimized database with complex queries and stored procedures
+-   **Climate Monitoring System**: API integration with distributed Spark processing
+
+#### Big Data Projects
+
+-   **Massive File Processor**: Handling datasets \>1GB with Spark optimizations
+-   **Automated Reporting System**: Airflow orchestration for enterprise reports
+-   **SQL to NoSQL Migration**: Performance comparison between relational and NoSQL databases
+
+#### Web Scraping Projects
+
+-   **E-commerce Price Monitor**: Price monitoring system with automatic alerts
+-   **News Aggregator**: News aggregation platform with automatic classification
+-   **Real Estate Analytics**: Real estate market analysis with extracted data
+
+#### Cloud Projects
+
+-   **Multi-Cloud Architecture**: Implementation on AWS, GCP, and Azure with service comparison
+-   **Data Lake Implementation**: Distributed storage with serverless processing
+-   **Streaming Analytics**: Real-time processing with cloud-native services
+
+#### Streaming Projects
+
+-   **Log Analysis System**: Real-time monitoring of enterprise applications
+-   **Trading Platform**: Financial analysis with real-time technical indicators
+-   **IoT Data Pipeline**: Sensor data processing with Apache Kafka and Flink
+
+#### Capstone Project
+
+-   **End-to-End ETL Pipeline**: Complete solution integrating all learned technologies
+-   **Professional Documentation**: Architecture, code, tests, and performance metrics
+-   **Executive Presentation**: Demonstration of business value and project ROI
+
+### Professional Preparation
+
+-   Knowledge of industry best practices
+-   Experience with standard enterprise tools\
+-   Ability to solve real data problems
+-   Solid foundation for Data Engineer roles
+
+## Success Recommendations
+
+### Consistency
+
+-   Dedicate daily time to the program
+-   Maintain a sustainable pace
+-   Don't skip practice sessions
+
+### Active Practice
+
+-   Implement all exercises
+-   Experiment beyond requirements
+-   Document your progress
+
+### Community
+
+-   Share your projects
+-   Seek feedback from other professionals
+-   Participate in Data Engineering communities
+
+### Adaptation
+
+-   Adjust pace according to your availability
+-   Deepen areas of greater interest
+-   Maintain focus on practical objectives
+
+------------------------------------------------------------------------
+
+**Total Duration**: 100 days\
+**Level**: Beginner to Intermediate-Advanced\
+**Mode**: Self-study with practical projects\
+**Result**: Complete preparation for Data Engineer roles

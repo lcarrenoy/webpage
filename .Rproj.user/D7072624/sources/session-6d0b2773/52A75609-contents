@@ -1,0 +1,28 @@
+---
+title: "BI"
+---
+
+# BI Tools
+
+## Tableau
+
+```{=html}
+<div class='tableauPlaceholder' id='viz1719127940127' style='position: relative'><noscript><a href='#'><img alt='Houses Sales ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HousesSales_17191278663840&#47;HousesSales&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='HousesSales_17191278663840&#47;HousesSales' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HousesSales_17191278663840&#47;HousesSales&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div> <html here>               
+
+<script type='text/javascript'>                    
+var divElement = document.getElementById('viz1719127940127');                    
+var vizElement = divElement.getElementsByTagName('object')[0];                    
+if ( divElement.offsetWidth > 860 ) { vizElement.style.minWidth='205px';vizElement.style.maxWidth='120%';vizElement.style.minHeight='100px';vizElement.style.maxHeight=(divElement.offsetWidth*+0.65)-'200px';} 
+else if ( divElement.offsetWidth > 850 ) {vizElement.style.minWidth='295px';vizElement.style.maxWidth='55%';vizElement.style.minHeight='100px';vizElement.style.maxHeight=(divElement.offsetWidth*0.15)-'200px';} 
+else { vizElement.style.width='143%';vizElement.style.height='800px';}                     var scriptElement = document.createElement('script');   scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+```
+
+## Power BI
+
+<iframe title="Sample Report Demo" width="1140" height="541.25" src="https://playground.powerbi.com/sampleReportEmbed" frameborder="0" allowFullScreen="true">
+
+</iframe>
+
+<iframe title="survived" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=e950afa8-db91-43a1-b25d-0c384aeeb927&amp;autoAuth=true&amp;embeddedDemo=true" frameborder="0" allowFullScreen="true">
+
+</iframe>

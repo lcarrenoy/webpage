@@ -1,0 +1,292 @@
+---
+title: "Data Science"
+output:
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    code_download: TRUE
+---
+
+# Data Science Tools & Learning Paths
+
+This document outlines essential tools and structured learning paths for Data Scientists, focusing on statistical analysis, machine learning, and big data processing.
+
+## Core Programming Languages
+
+### R {#r-language}
+
+-   **Function**: Statistical programming language designed for data analysis, statistical modeling, and data visualization with an extensive package ecosystem.
+-   **Website**: [R Project](https://www.r-project.org/)
+-   **Cost Model**: Open Source
+-   **Best For**: Statistical analysis, academic research, data visualization
+
+::: callout-tip
+## Why R?
+
+R es especialmente potente para análisis estadístico y visualización de datos, con una comunidad académica muy activa.
+:::
+
+### Python {#python-language}
+
+-   **Function**: General-purpose programming language with powerful data science libraries (scikit-learn, pandas, numpy) for machine learning and data analysis.
+-   **Website**: [Python.org](https://www.python.org/)
+-   **Cost Model**: Open Source
+-   **Best For**: Machine learning, automation, production deployment
+
+::: callout-tip
+## Why Python?
+
+Python ofrece versatilidad y facilidad de integración en sistemas de producción, siendo ideal para machine learning y automatización.
+:::
+
+## Database & Query Tools
+
+### SQL {#sql-tools}
+
+-   **Function**: Standard language for managing and querying relational databases, essential for data extraction and manipulation in data science workflows.
+-   **Website**: [W3Schools SQL](https://www.w3schools.com/sql/)
+-   **Cost Model**: Free (varies by database system)
+-   **Best For**: Data extraction, database management, data preprocessing
+
+``` sql
+-- Ejemplo básico de consulta SQL
+SELECT column1, column2, COUNT(*) as count
+FROM table_name
+WHERE condition = 'value'
+GROUP BY column1, column2
+ORDER BY count DESC;
+```
+
+## Version Control
+
+### Git {#git-version-control}
+
+-   **Function**: Distributed version control system for tracking changes in code, enabling collaboration and reproducible data science projects.
+-   **Website**: [Git](https://git-scm.com/)
+-   **Cost Model**: Open Source
+-   **Best For**: Code versioning, collaboration, project management
+
+``` bash
+# Comandos básicos de Git
+git init
+git add .
+git commit -m "Initial commit"
+git push origin main
+```
+
+## Big Data Processing
+
+### Apache Spark {#apache-spark}
+
+-   **Function**: Unified analytics engine for large-scale data processing with MLlib for machine learning at scale.
+-   **Website**: [Apache Spark](https://spark.apache.org/)
+-   **Cost Model**: Open Source
+-   **Best For**: Large-scale data processing, distributed machine learning
+
+``` python
+# Ejemplo básico con PySpark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("DataScienceExample") \
+    .getOrCreate()
+
+df = spark.read.csv("data.csv", header=True, inferSchema=True)
+df.show()
+```
+
+## Data Scientist Learning Paths
+
+### Data Scientist in R {#r-learning-path}
+
+::: panel-tabset
+#### Core Foundation
+
+-   Intermediate Importing Data in R
+-   Introduction to SQL
+-   Intermediate SQL
+-   Joining Data in SQL
+
+#### Development Skills
+
+-   Developing R Packages
+-   Introduction to Git
+-   Intermediate Git
+
+#### Business Applications
+
+-   Machine Learning for Business
+-   Feature Engineering in R
+:::
+
+### Data Scientist in Python {#python-learning-path}
+
+::: panel-tabset
+#### Core Foundation
+
+-   Intermediate Importing Data in Python
+-   Introduction to SQL
+-   Intermediate SQL
+-   Joining Data in SQL
+
+#### Development Skills
+
+-   Developing Python Packages
+-   Introduction to Git
+-   Intermediate Git
+
+#### Business Applications
+
+-   Preprocessing for Machine Learning in Python
+-   Machine Learning for Business
+:::
+
+## Machine Learning Specialist Paths
+
+### Machine Learning Scientist in R {#ml-r-path}
+
+::: panel-tabset
+#### Supervised Learning
+
+-   Supervised Learning in R: Classification
+-   Supervised Learning in R: Regression
+-   Intermediate Regression in R
+-   Machine Learning with caret in R
+-   Modeling with tidymodels in R
+
+#### Unsupervised Learning
+
+-   Unsupervised Learning in R
+-   Cluster Analysis in R
+-   Dimensionality Reduction in R
+
+#### Advanced Techniques
+
+-   Machine Learning in the Tidyverse
+-   Machine Learning with Tree-Based Models in R
+-   Support Vector Machines in R
+-   Hyperparameter Tuning in R
+
+#### Bayesian Methods
+
+-   Fundamentals of Bayesian Data Analysis in R
+-   Bayesian Regression Modeling with rstanarm
+
+#### Big Data
+
+-   Introduction to Spark with sparklyr in R
+:::
+
+### Machine Learning Scientist in Python {#ml-python-path}
+
+::: panel-tabset
+#### Core Machine Learning
+
+-   Supervised Learning with scikit-learn
+-   Unsupervised Learning in Python
+-   Linear Classifiers in Python
+
+#### Advanced Algorithms
+
+-   Machine Learning with Tree-Based Models in Python
+-   Extreme Gradient Boosting with XGBoost
+:::
+
+## Tool Ecosystem by Specialization
+
+### Statistical Analysis (R-focused) {#r-ecosystem}
+
+| Category          | Tools                           |
+|-------------------|---------------------------------|
+| **Core**          | R, RStudio, tidyverse           |
+| **Visualization** | ggplot2, plotly, shiny          |
+| **Modeling**      | caret, tidymodels, randomForest |
+| **Bayesian**      | rstanarm, brms, MCMCpack        |
+
+``` r
+# Ejemplo de flujo típico en R
+library(tidyverse)
+library(caret)
+
+# Cargar y explorar datos
+data <- read_csv("dataset.csv")
+data %>% 
+  glimpse() %>%
+  summary()
+
+# Modelado
+model <- train(target ~ ., 
+               data = data,
+               method = "rf",
+               trControl = trainControl(method = "cv"))
+```
+
+### Machine Learning (Python-focused) {#python-ecosystem}
+
+| Category          | Tools                             |
+|-------------------|-----------------------------------|
+| **Core**          | Python, Jupyter, pandas, numpy    |
+| **Visualization** | matplotlib, seaborn, plotly       |
+| **Modeling**      | scikit-learn, XGBoost, TensorFlow |
+| **Deep Learning** | PyTorch, Keras, TensorFlow        |
+
+``` python
+# Ejemplo de flujo típico en Python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Cargar y explorar datos
+df = pd.read_csv('dataset.csv')
+print(df.info())
+
+# Preparar datos
+X = df.drop('target', axis=1)
+y = df['target']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Modelado
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+```
+
+### Data Engineering Integration {#data-engineering}
+
+| Category       | Tools                      |
+|----------------|----------------------------|
+| **Databases**  | PostgreSQL, MySQL, MongoDB |
+| **Big Data**   | Spark, Hadoop, Kafka       |
+| **Cloud**      | AWS, Azure, Google Cloud   |
+| **Containers** | Docker, Kubernetes         |
+
+::: callout-important
+## Integración de Herramientas
+
+La elección de herramientas debe considerar el ecosistema completo: desde la ingesta de datos hasta el despliegue en producción.
+:::
+
+## Recomendaciones de Aprendizaje
+
+### Para Principiantes {#beginner-recommendations}
+
+1.  **Empezar con fundamentos**: SQL y estadística básica
+2.  **Elegir un lenguaje principal**: R para análisis estadístico, Python para ML
+3.  **Practicar con proyectos reales**: Kaggle, proyectos personales
+4.  **Aprender control de versiones**: Git desde el inicio
+
+### Para Nivel Intermedio {#intermediate-recommendations}
+
+1.  **Especializarse**: Machine Learning o Análisis Estadístico
+2.  **Aprender herramientas de producción**: Docker, Cloud platforms
+3.  **Contribuir a proyectos open source**
+4.  **Networking**: Comunidades de Data Science
+
+### Para Nivel Avanzado {#advanced-recommendations}
+
+1.  **Deep Learning y AI**: TensorFlow, PyTorch
+2.  **Big Data**: Spark, Hadoop ecosystems
+3.  **MLOps**: Despliegue y monitoreo de modelos
+4.  **Liderazgo técnico**: Arquitectura de datos, gestión de equipos

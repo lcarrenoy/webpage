@@ -1,0 +1,47 @@
+{
+  "index.qmd": {
+    "index.html": "0672ef51"
+  },
+  "about.qmd": {
+    "about.html": "6f35831b"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "1e8ae12b"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "0c2cf216"
+  },
+  "posts/welcome 2/index.qmd": {
+    "index.html": "cd77709f"
+  },
+  "Statistics.qmd": {
+    "Statistics.html": "84899da6"
+  },
+  "about-es.qmd": {
+    "about-es.html": "30b2337a"
+  },
+  "about-pt.qmd": {
+    "about-pt.html": "d4661124"
+  },
+  "AI_Engineer.qmd": {
+    "AI_Engineer.html": "5e935668"
+  },
+  "Automotion&DEV.qmd": {
+    "Automotion&DEV.html": "bfaf4296"
+  },
+  "BI.qmd": {
+    "BI.html": "76644b9a"
+  },
+  "Blog.qmd": {
+    "Blog.html": "2cc95f6a"
+  },
+  "Data_Analyst.qmd": {
+    "Data_Analyst.html": "540283d2"
+  },
+  "Data_Engineer.qmd": {
+    "Data_Engineer.html": "55386e36"
+  },
+  "Data_Science.qmd": {
+    "Data_Science.html": "f0c5bac0"
+  }
+}

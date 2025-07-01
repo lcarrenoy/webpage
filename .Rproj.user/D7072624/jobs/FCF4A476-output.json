@@ -1,0 +1,7 @@
+[1,"==> quarto preview Statistics.qmd --to html --no-watch-inputs --no-browse\n\n"]
+[1,"pandoc \n  to: html\n  output-file: Statistics.html\n  standalone: true\n  title-prefix: Blog\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  css:\n    - styles.css\n  toc: true\n  variables: {}\n  \nmetadata\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: en\n  theme:\n    light: zephyr\n    dark: darkly\n  fontsize: 1.5 rem\n  mainfont: arial\n  monofont: courier new\n  code-block-bg: lightblue\n  title: Stastistics\n  editor: visual\n  \n"]
+[1,"Output created: docs\\Statistics.html\n\n"]
+[1,"Preparing to preview\n"]
+[1,"\n"]
+[1,"Watching files for changes\nBrowse at http://localhost:3744/Statistics.html\n"]
+[1,"GET: /Statistics.html\n"]

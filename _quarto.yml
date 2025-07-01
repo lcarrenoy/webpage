@@ -1,0 +1,53 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Blog"
+  navbar:
+    left:
+      - text: Home
+        menu:
+          - text: English
+            href: about.qmd
+          - text: Português
+            href: about-pt.qmd
+          - text: Español
+            href: about-es.qmd
+      - text: Blog
+        href: Blog.qmd
+      - text: Automotion & DEV
+        href: Automotion&DEV.qmd
+      - text: Data Analyst
+        href: Data_Analyst.qmd
+      - text: BI
+        href: BI.qmd  
+      - text: Data Engineer
+        href: Data_Engineer.qmd
+      - text: Data Science
+        href: Data_Science.qmd
+      - text: AI Engineer
+        href: AI_Engineer.qmd
+      - text: Statistics
+        href: Statistics.qmd  
+
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/lcarrenoy
+      - icon: linkedin
+        href: https://www.linkedin.com/in/luis-alberto-carreño/     
+
+format:
+  html:
+    theme: 
+      light: zephyr
+      dark: darkly
+    fontsize: 1.5 rem
+    mainfont: arial
+    monofont: courier new
+    css: styles.css
+    toc: true
+    code-link: true
+    code-fold: show
+    code-block-bg: "lightblue"

@@ -1,0 +1,397 @@
+---
+title: "Data Anlyst"
+subtitle: "Python, SQL y R"
+output:
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    code_download: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+# Cargar librerías necesarias
+library(DBI)
+library(RSQLite)
+library(ggplot2)
+library(tidyr)
+library(reticulate)
+
+# Crear base de datos SQLite de ejemplo
+con <- dbConnect(RSQLite::SQLite(), ":memory:")
+
+# Crear tablas de ejemplo
+dbExecute(con, "
+CREATE TABLE ventas_programacion (
+    lenguaje TEXT,
+    usuarios INTEGER
+)")
+
+dbExecute(con, "
+INSERT INTO ventas_programacion VALUES 
+('Python', 50),
+('R', 20),
+('Node.js', 35),
+('PHP', 47),
+('Java', 42),
+('JavaScript', 55)
+")
+
+dbExecute(con, "
+CREATE TABLE empleados_habilidades (
+    habilidad TEXT,
+    cantidad INTEGER
+)")
+
+dbExecute(con, "
+INSERT INTO empleados_habilidades VALUES 
+('Programación', 76),
+('Ciencia de Datos', 31),
+('Matemáticas', 45),
+('Ingeniería', 57),
+('Diseño', 38),
+('Marketing', 29)
+")
+
+dbExecute(con, "
+CREATE TABLE ventas_por_año (
+    año INTEGER,
+    python INTEGER,
+    r INTEGER,
+    javascript INTEGER
+)")
+
+dbExecute(con, "
+INSERT INTO ventas_por_año VALUES 
+(2020, 45, 15, 40),
+(2021, 50, 20, 45),
+(2022, 55, 22, 50),
+(2023, 60, 25, 55),
+(2024, 65, 28, 60)
+")
+```
+
+## Introducción
+
+Este documento demuestra cómo crear gráficos de barras utilizando **Python** (Matplotlib), **SQL** para consultas de datos, y **R** (ggplot2) para visualizaciones. Esta aproximación multilenguaje permite aprovechar las fortalezas específicas de cada herramienta.
+
+## Bar Charts - Python (Matplotlib)
+
+### Gráfico Básico de Barras Verticales
+
+```{python, fig.align='center', results='hide', collapse=TRUE}
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Datos de lenguajes de programación
+eje_x = ['Python', 'R', 'Node.js', 'PHP', 'Java', 'JavaScript']
+eje_y = [50, 20, 35, 47, 42, 55]
+
+plt.figure(figsize=(12, 7))
+colors = ['#3776ab', '#276DC3', '#8CC84B', '#777BB4', '#ED8B00', '#F7DF1E']
+bars = plt.bar(eje_x, eje_y, color=colors, alpha=0.8, edgecolor='black', linewidth=1)
+
+# Agregar valores encima de las barras
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+             f'{int(height)}K', ha='center', va='bottom', fontweight='bold')
+
+plt.ylabel('Cantidad de usuarios (miles)', fontsize=12)
+plt.xlabel('Lenguajes de programación', fontsize=12)
+plt.title('Popularidad de Lenguajes de Programación', fontsize=14, fontweight='bold')
+plt.xticks(rotation=45)
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+### Gráfico de Barras Horizontales
+
+```{python, fig.align='center', results='hide', collapse=TRUE}
+import matplotlib.pyplot as plt
+
+# Datos de habilidades profesionales
+habilidades = ['Programación', 'Ciencia de Datos', 'Matemáticas', 'Ingeniería', 'Diseño', 'Marketing']
+empleados = [76, 31, 45, 57, 38, 29]
+
+plt.figure(figsize=(12, 8))
+colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD']
+bars = plt.barh(habilidades, empleados, color=colors, alpha=0.8, edgecolor='black', linewidth=1)
+
+# Agregar valores al final de las barras
+for i, bar in enumerate(bars):
+    width = bar.get_width()
+    plt.text(width + 1, bar.get_y() + bar.get_height()/2.,
+             f'{int(width)}', ha='left', va='center', fontweight='bold')
+
+plt.xlabel('Número de empleados', fontsize=12)
+plt.ylabel('Habilidades', fontsize=12)
+plt.title('Distribución de Habilidades en el Equipo', fontsize=14, fontweight='bold')
+plt.grid(axis='x', alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+### Gráfico de Barras Agrupadas
+
+```{python, fig.align='center', results='hide', collapse=TRUE}
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Datos de múltiples series
+años = ['2020', '2021', '2022', '2023', '2024']
+python = [45, 50, 55, 60, 65]
+r = [15, 20, 22, 25, 28]
+javascript = [40, 45, 50, 55, 60]
+
+x = np.arange(len(años))
+width = 0.25
+
+plt.figure(figsize=(12, 8))
+bars1 = plt.bar(x - width, python, width, label='Python', color='#3776ab', alpha=0.8)
+bars2 = plt.bar(x, r, width, label='R', color='#276DC3', alpha=0.8)
+bars3 = plt.bar(x + width, javascript, width, label='JavaScript', color='#F7DF1E', alpha=0.8)
+
+plt.xlabel('Años', fontsize=12)
+plt.ylabel('Usuarios (miles)', fontsize=12)
+plt.title('Evolución de Usuarios por Lenguaje (2020-2024)', fontsize=14, fontweight='bold')
+plt.xticks(x, años)
+plt.legend()
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+## SQL - Consultas para Análisis de Datos
+
+### Consulta de Datos de Lenguajes
+
+```{sql connection=con}
+SELECT 
+    lenguaje,
+    usuarios,
+    ROUND(usuarios * 100.0 / (SELECT SUM(usuarios) FROM ventas_programacion), 1) as porcentaje_mercado
+FROM ventas_programacion 
+ORDER BY usuarios DESC;
+```
+
+### Top 3 Lenguajes Más Populares
+
+```{sql connection=con}
+SELECT 
+    lenguaje,
+    usuarios,
+    CASE 
+        WHEN usuarios >= 50 THEN 'Alta Popularidad'
+        WHEN usuarios >= 35 THEN 'Popularidad Media'
+        ELSE 'Popularidad Baja'
+    END as categoria_popularidad
+FROM ventas_programacion 
+ORDER BY usuarios DESC 
+LIMIT 3;
+```
+
+### Análisis de Habilidades con Estadísticas
+
+```{sql connection=con}
+SELECT 
+    habilidad,
+    cantidad,
+    ROUND(AVG(cantidad) OVER(), 1) as promedio_general,
+    ROUND(cantidad - AVG(cantidad) OVER(), 1) as diferencia_promedio,
+    CASE 
+        WHEN cantidad > AVG(cantidad) OVER() THEN 'Por encima del promedio'
+        ELSE 'Por debajo del promedio'
+    END as clasificacion
+FROM empleados_habilidades 
+ORDER BY cantidad DESC;
+```
+
+### Evolución Temporal de Lenguajes
+
+```{sql connection=con}
+SELECT 
+    año,
+    python,
+    r,
+    javascript,
+    (python + r + javascript) as total_usuarios,
+    ROUND(python * 100.0 / (python + r + javascript), 1) as porcentaje_python
+FROM ventas_por_año 
+ORDER BY año;
+```
+
+## Bar Charts - R (ggplot2)
+
+### Gráfico Básico con R
+
+```{r, fig.align='center', fig.width=12, fig.height=7}
+# Obtener datos de SQL
+datos_lenguajes <- dbGetQuery(con, "SELECT lenguaje, usuarios FROM ventas_programacion ORDER BY usuarios DESC")
+
+# Crear gráfico con ggplot2
+ggplot(datos_lenguajes, aes(x = reorder(lenguaje, usuarios), y = usuarios, fill = lenguaje)) +
+  geom_bar(stat = "identity", alpha = 0.8, color = "black", size = 0.5) +
+  geom_text(aes(label = paste0(usuarios, "K")), hjust = -0.1, fontface = "bold") +
+  coord_flip() +
+  labs(title = "Popularidad de Lenguajes de Programación",
+       subtitle = "Datos obtenidos de consulta SQL",
+       x = "Lenguajes de Programación", 
+       y = "Usuarios (miles)") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(size = 16, face = "bold"),
+        plot.subtitle = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        axis.title = element_text(size = 12, face = "bold")) +
+  scale_fill_viridis_d(option = "plasma") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
+```
+
+### Gráfico de Habilidades
+
+```{r, fig.align='center', fig.width=12, fig.height=8}
+# Obtener datos de habilidades
+datos_habilidades <- dbGetQuery(con, "SELECT habilidad, cantidad FROM empleados_habilidades ORDER BY cantidad DESC")
+
+ggplot(datos_habilidades, aes(x = reorder(habilidad, cantidad), y = cantidad, fill = cantidad)) +
+  geom_bar(stat = "identity", alpha = 0.8, color = "black", size = 0.5) +
+  geom_text(aes(label = cantidad), hjust = -0.1, fontface = "bold") +
+  coord_flip() +
+  labs(title = "Distribución de Habilidades en el Equipo",
+       subtitle = "Número de empleados por habilidad",
+       x = "Habilidades", 
+       y = "Número de empleados") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(size = 16, face = "bold"),
+        plot.subtitle = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        axis.title = element_text(size = 12, face = "bold")) +
+  scale_fill_gradient(low = "#E8F4FD", high = "#1E88E5") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
+```
+
+### Gráfico de Evolución Temporal
+
+```{r, fig.align='center', fig.width=12, fig.height=8}
+# Obtener datos temporales
+datos_tiempo <- dbGetQuery(con, "SELECT * FROM ventas_por_año ORDER BY año")
+
+# Transformar datos para ggplot
+datos_long <- pivot_longer(datos_tiempo, 
+                          cols = c(python, r, javascript), 
+                          names_to = "lenguaje", 
+                          values_to = "usuarios")
+
+# Crear gráfico
+ggplot(datos_long, aes(x = factor(año), y = usuarios, fill = lenguaje)) +
+  geom_bar(stat = "identity", position = "dodge", alpha = 0.8, color = "black", size = 0.3) +
+  geom_text(aes(label = paste0(usuarios, "K")), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            fontface = "bold", 
+            size = 3) +
+  labs(title = "Evolución de Usuarios por Lenguaje (2020-2024)",
+       subtitle = "Crecimiento anual de las principales tecnologías",
+       x = "Años", 
+       y = "Usuarios (miles)",
+       fill = "Lenguaje") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold"),
+        plot.subtitle = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        axis.title = element_text(size = 12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"),
+        legend.text = element_text(size = 11)) +
+  scale_fill_manual(values = c("python" = "#3776ab", "r" = "#276DC3", "javascript" = "#F7DF1E")) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
+```
+
+## Integración SQL + Python
+
+Combinemos una consulta SQL compleja con visualización en Python:
+
+```{r}
+# Ejecutar consulta SQL avanzada
+datos_analisis <- dbGetQuery(con, "
+SELECT 
+    lenguaje,
+    usuarios,
+    CASE 
+        WHEN usuarios >= 50 THEN 'Alto'
+        WHEN usuarios >= 35 THEN 'Medio'
+        ELSE 'Bajo'
+    END as categoria,
+    ROUND(usuarios * 100.0 / (SELECT SUM(usuarios) FROM ventas_programacion), 1) as porcentaje
+FROM ventas_programacion 
+WHERE usuarios > 25
+ORDER BY usuarios DESC
+")
+
+# Pasar datos a Python
+py$datos_desde_r <- datos_analisis
+```
+
+```{python, fig.align='center', results='hide', collapse=TRUE}
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Usar datos de R/SQL
+df = pd.DataFrame(datos_desde_r)
+
+# Crear subplot con dos gráficos
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+# Gráfico 1: Barras por usuarios
+colors = ['#FF6B6B' if cat == 'Alto' else '#4ECDC4' if cat == 'Medio' else '#45B7D1' 
+          for cat in df['categoria']]
+
+bars1 = ax1.bar(df['lenguaje'], df['usuarios'], color=colors, alpha=0.8, edgecolor='black')
+ax1.set_title('Lenguajes por Número de Usuarios', fontweight='bold')
+ax1.set_xlabel('Lenguajes')
+ax1.set_ylabel('Usuarios (miles)')
+ax1.tick_params(axis='x', rotation=45)
+
+# Agregar valores en las barras
+for bar in bars1:
+    height = bar.get_height()
+    ax1.text(bar.get_x() + bar.get_width()/2., height + 1,
+             f'{int(height)}K', ha='center', va='bottom', fontweight='bold')
+
+# Gráfico 2: Distribución por porcentaje
+wedges, texts, autotexts = ax2.pie(df['porcentaje'], labels=df['lenguaje'], autopct='%1.1f%%',
+                                   colors=colors, startangle=90)
+ax2.set_title('Distribución de Mercado', fontweight='bold')
+
+plt.tight_layout()
+plt.show()
+```
+
+## Análisis Comparativo Final
+
+### Resumen de Datos por Categoría
+
+```{sql connection=con}
+SELECT 
+    categoria,
+    COUNT(*) as cantidad_lenguajes,
+    AVG(usuarios) as promedio_usuarios,
+    SUM(usuarios) as total_usuarios
+FROM (
+    SELECT 
+        lenguaje,
+        usuarios,
+        CASE 
+            WHEN usuarios >= 50 THEN 'Alto'
+            WHEN usuarios >= 35 THEN 'Medio'
+            ELSE 'Bajo'
+        END as categoria
+    FROM ventas_programacion
+) 
+GROUP BY categoria
+ORDER BY total_usuarios DESC;
+```
+

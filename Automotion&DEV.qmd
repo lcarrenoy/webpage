@@ -1,0 +1,140 @@
+---
+title: "Automation & Software Development"
+output: 
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(knitr)
+library(DT)
+```
+
+
+# AUTOMATION TOOLS
+## Power Automate
+
+```{r powerautomate-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/PowerAutomate.png")
+```
+
+**Function:** Microsoft tool for automating workflows and connecting different applications and services within the Microsoft ecosystem.
+
+**Official Website:** [https://powerautomate.microsoft.com](https://powerautomate.microsoft.com)
+
+---
+
+## Make
+
+```{r make-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/make.png")
+```
+
+**Function:** Visual automation platform that connects over 1,000 applications using flowchart diagrams and advanced data transformations.
+
+**Official Website:** [https://www.make.com](https://www.make.com)
+
+---
+
+## N8N
+
+```{r n8n-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/N8N.png")
+```
+
+**Function:** Open-source automation tool that allows creating complex workflows with a visual node-based interface and self-hosting capabilities.
+
+**Official Website:** [https://n8n.io](https://n8n.io)
+
+---
+
+# SOFTWARE DEVELOPER TOOLS
+
+## Power Apps
+
+```{r powerapps-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Powerapps.png")
+```
+
+**Function:** Microsoft's low-code platform for creating business applications without advanced programming, integrated with Microsoft 365.
+
+**Official Website:** [https://powerapps.microsoft.com](https://powerapps.microsoft.com)
+
+---
+
+## Bubble.io
+
+```{r bubble-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Bubble.png")
+```
+
+**Function:** No-code platform for building web applications with visual programming, database management, and hosting included.
+
+**Official Website:** [https://bubble.io](https://bubble.io)
+
+---
+
+## Flutter
+
+```{r flutter-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Flutter.png")
+```
+
+**Function:** Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase using Dart language.
+
+**Official Website:** [https://flutter.dev](https://flutter.dev)
+
+---
+
+## Airtable
+
+```{r airtable-img, fig.align='center', out.width='300px'}
+knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/web/Airtable.png")
+```
+
+**Function:** Collaborative database platform that combines spreadsheets with automation capabilities, multiple views, and application development features.
+
+**Official Website:** [https://www.airtable.com](https://www.airtable.com)
+
+---
+
+# COMPLETE TOOLS OVERVIEW
+
+```{r complete-overview}
+# Create comprehensive overview
+all_tools <- data.frame(
+  Tool = c("Power Automate", "Make", "N8N", "Power Apps", "Bubble", "Flutter", "Airtable"),
+  Category = c("Automation", "Automation", "Automation", 
+               "Development", "Development", "Development", "Development"),
+  "Primary_Use" = c("Workflow automation", 
+                   "Visual automation", 
+                   "Open source automation",
+                   "Business app creation",
+                   "No-code web development",
+                   "Cross-platform development",
+                   "Database & app platform"),
+  "Cost_Model" = c("Subscription", "Freemium", "Open Source",
+                  "Subscription", "Freemium", "Free", "Freemium"),
+  stringsAsFactors = FALSE
+)
+
+# Rename columns
+names(all_tools) <- c("Tool", "Category", "Primary Use", "Cost Model")
+
+# Create interactive table with filtering
+DT::datatable(all_tools, 
+              filter = 'top',
+              options = list(
+                pageLength = 10,
+                columnDefs = list(list(className = 'dt-center', targets = 0:3))
+              ),
+              caption = 'Table 1: Complete Tools Overview (with filters)') %>%
+  DT::formatStyle(columns = 1:4, fontSize = '14px') %>%
+  DT::formatStyle('Category',
+                  backgroundColor = DT::styleEqual(c('Automation', 'Development'), 
+                                                  c('#e8f4fd', '#f0f8ff')))
+```
+
