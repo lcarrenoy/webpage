@@ -6,9 +6,9 @@ format:
 editor: visual
 ---
 
-# **STATISTICIAN R COURSES**
+# **Statistician R Cources**
 
-## **FOUNDATIONAL STATISTICS**
+## **Foundational Statistics**
 
 **Statistician**
 
@@ -34,7 +34,7 @@ editor: visual
 -   **Website:** <https://www.datacamp.com>
 -   **Cost Model:** Subscription
 
-## **REGRESSION & MODELING**
+## **Regression & Modeling**
 
 **Introduction to Regression in R**
 
@@ -54,7 +54,7 @@ editor: visual
 -   **Website:** <https://www.datacamp.com>
 -   **Cost Model:** Subscription
 
-## **SPECIALIZED ANALYSIS METHODS**
+## **Specialized Analysis Methods**
 
 **Sampling in R**
 
@@ -80,7 +80,7 @@ editor: visual
 -   **Website:** <https://www.datacamp.com>
 -   **Cost Model:** Subscription
 
-## **ADVANCED STATISTICAL METHODS**
+## **Advanced Statistical Methods**
 
 **Survival Analysis in R**
 

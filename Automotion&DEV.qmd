@@ -14,7 +14,7 @@ library(DT)
 ```
 
 
-# AUTOMATION TOOLS
+# Automation Tools
 ## Power Automate
 
 ```{r powerautomate-img, fig.align='center', out.width='300px'}
@@ -51,7 +51,7 @@ knitr::include_graphics("C:/Users/luisc_0ekf270/OneDrive/Desktop/Github/Blog/N8N
 
 ---
 
-# SOFTWARE DEVELOPER TOOLS
+# Software Developer Tools
 
 ## Power Apps
 
