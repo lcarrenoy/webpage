@@ -412,7 +412,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RDM=">D3 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFw">map <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGxvdGx5">Plotly <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -427,96 +427,92 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1751259600000" data-listing-file-modified-sort="1751332684665" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
-<div class="thumbnail"><a href="./posts/post-with-code/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="0" data-categories="RDM=" data-listing-date-sort="1719810000000" data-listing-file-modified-sort="1751526116139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1550">
+<div class="thumbnail"><a href="./posts/we/index.html" class="no-external">
 
-<img loading="lazy" src="./posts/post-with-code/image.jpg" class="thumbnail-image">
+<img loading="lazy" src="./posts/we/scatter.jpg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/post-with-code/index.html" class="no-external">Post With Code</a>
+<a href="./posts/we/index.html" class="no-external">Interactive Scatter Plot</a>
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RDM='); return false;">D3</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/post-with-code/index.html" class="no-external">
-This is a post with executable code.
+<div class="delink listing-description"><a href="./posts/we/index.html" class="no-external">
+This application allows you to explore different types of data visualizations interactively using Observable JS.
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/post-with-code/index.html" class="no-external">
+<a href="./posts/we/index.html" class="no-external">
 <div class="listing-date">
-Jun 30, 2025
-</div>
-<div class="listing-author">
-Harlow Malloc
+Jul 1, 2024
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1751000400000" data-listing-file-modified-sort="1751332684656" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="1" data-categories="bWFw" data-listing-date-sort="1719723600000" data-listing-file-modified-sort="1751526555126" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="42">
+<div class="thumbnail"><a href="./posts/map/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
+<img loading="lazy" src="./posts/map/map.jpg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
+<a href="./posts/map/index.html" class="no-external">Interactive Map of Lima, Peru</a>
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
+<div class="listing-category" onclick="window.quartoListingCategory('bWFw'); return false;">map</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
-This is the first post in a Quarto blog. Welcome!
+<div class="delink listing-description"><a href="./posts/map/index.html" class="no-external">
+
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im">from</span> ipyleaflet <span class="im">import</span> Map, Marker, basemaps</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="co"># Create the map with corrected configuration for Lima, Peru</span></span>
+<span id="cb1-4">m <span class="op">=</span> Map(</span>
+<span id="cb1-5">    basemap<span class="op">=</span>basemaps.OpenStreetMap.Mapnik,  <span class="co">#…</span></span><span id="cb1-6"><span class="op"></span><span class="op"></span><span class="fl"></span><span class="op"></span><span class="fl"></span><span class="co"></span></span><span id="cb1-7"><span class="op"></span><span class="dv"></span></span><span id="cb1-8"></span><span id="cb1-9"></span><span id="cb1-10"><span class="co"></span></span><span id="cb1-11"><span class="op"></span><span class="op"></span><span class="fl"></span><span class="op"></span><span class="fl"></span></span><span id="cb1-12"></span><span id="cb1-13"><span class="co"></span></span><span id="cb1-14"></span></code></pre></div></details><div class="cell-output cell-output-display" data-execution_count="1"><script type="application/vnd.jupyter.widget-view+json"></script></div>
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
+<a href="./posts/map/index.html" class="no-external">
 <div class="listing-date">
-Jun 27, 2025
-</div>
-<div class="listing-author">
-Tristan O’Malley
+Jun 30, 2024
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="bmV3cw==" data-listing-date-sort="1751000400000" data-listing-file-modified-sort="1751333140561" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail"><a href="./posts/welcome 2/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="2" data-categories="UHl0aG9uJTJDUGxvdGx5" data-listing-date-sort="1719118800000" data-listing-file-modified-sort="1751526370598" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="195">
+<div class="thumbnail"><a href="./posts/Interactive Histogram with Plotly/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts\welcome 2\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
+<img loading="lazy" src="./posts/Interactive Histogram with Plotly/old.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/welcome 2/index.html" class="no-external">Welcome To My Blog 2</a>
+<a href="./posts/Interactive Histogram with Plotly/index.html" class="no-external">Interactive Histogram with Plotly</a>
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGxvdGx5'); return false;">Plotly</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/welcome 2/index.html" class="no-external">
-This is the first post in a Quarto blog. Welcome!
+<div class="delink listing-description"><a href="./posts/Interactive Histogram with Plotly/index.html" class="no-external">
+This is an interactive histogram of the Old Faithful geyser data using Plotly
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/welcome 2/index.html" class="no-external">
+<a href="./posts/Interactive Histogram with Plotly/index.html" class="no-external">
 <div class="listing-date">
-Jun 27, 2025
-</div>
-<div class="listing-author">
-Tristan O’Malley
+Jun 23, 2024
 </div>
 </a>
 </div>

@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Tristan O’Malley">
-<meta name="dcterms.date" content="2025-06-27">
+<meta name="author" content="Tu Nombre">
+<meta name="dcterms.date" content="2025-07-01">
 
-<title>Welcome To My Blog 2 – Blog</title>
+<title>Mi Dashboard Interactivo – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,6 +108,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -312,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Luis Carreño</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lcarrenoy"> <i class="bi bi-github" role="img">
@@ -336,11 +373,8 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Welcome To My Blog 2</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">news</div>
-              </div>
-                  </div>
+      <h1 class="title">Mi Dashboard Interactivo</h1>
+                      </div>
   </div>
     
   
@@ -349,14 +383,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Tristan O’Malley </p>
+               <p>Tu Nombre </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 27, 2025</p>
+        <p class="date">July 1, 2025</p>
       </div>
     </div>
     
@@ -367,8 +401,20 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#app-interactiva" id="toc-app-interactiva" class="nav-link active" data-scroll-target="#app-interactiva">App Interactiva</a>
+  <ul class="collapse">
+  <li><a href="#controles-interactivos" id="toc-controles-interactivos" class="nav-link" data-scroll-target="#controles-interactivos">Controles Interactivos</a></li>
+  <li><a href="#visualización" id="toc-visualización" class="nav-link" data-scroll-target="#visualización">Visualización</a></li>
+  <li><a href="#estadísticas-en-tiempo-real" id="toc-estadísticas-en-tiempo-real" class="nav-link" data-scroll-target="#estadísticas-en-tiempo-real">Estadísticas en Tiempo Real</a></li>
+  <li><a href="#datos-en-tabla-interactiva" id="toc-datos-en-tabla-interactiva" class="nav-link" data-scroll-target="#datos-en-tabla-interactiva">Datos en Tabla Interactiva</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -378,13 +424,246 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<section id="app-interactiva" class="level1">
+<h1>App Interactiva</h1>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="14" data-source-offset="-23"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 13;"><span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Plot <span class="op">=</span> <span class="im">import</span>(<span class="st">"https://cdn.skypack.dev/@observablehq/plot@0.6"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="im">import</span>(<span class="st">"https://cdn.skypack.dev/d3@7"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Generate sample data</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> d3<span class="op">.</span><span class="fu">range</span>(n)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> ({</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">randomNormal</span>()()<span class="op">,</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">randomNormal</span>()()<span class="op">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">category</span><span class="op">:</span> [<span class="st">'A'</span><span class="op">,</span> <span class="st">'B'</span><span class="op">,</span> <span class="st">'C'</span>][<span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">3</span>)]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<section id="controles-interactivos" class="level2">
+<h2 class="anchored" data-anchor-id="controles-interactivos">Controles Interactivos</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="33" data-source-offset="-2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 32;"><span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>viewof chartType <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"scatter"</span><span class="op">,</span> <span class="st">"histogram"</span><span class="op">,</span> <span class="st">"box"</span>]<span class="op">,</span> </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Selecciona el tipo de gráfico:"</span><span class="op">,</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"scatter"</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>viewof nPoints <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">10</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Número de puntos:"</span><span class="op">,</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="dv">50</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualización" class="level2">
+<h2 class="anchored" data-anchor-id="visualización">Visualización</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="57" data-source-offset="-34"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>filteredData <span class="op">=</span> data<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> nPoints)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="co">// Create different chart types</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> {</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (chartType <span class="op">===</span> <span class="st">"scatter"</span>) {</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="vs">`Scatter Plot con </span><span class="sc">${</span>nPoints<span class="sc">}</span><span class="vs"> puntos`</span><span class="op">,</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>      <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">dot</span>(filteredData<span class="op">,</span> {</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> </span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> </span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"category"</span><span class="op">,</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>          <span class="dt">stroke</span><span class="op">:</span> <span class="st">"white"</span><span class="op">,</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>          <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (chartType <span class="op">===</span> <span class="st">"histogram"</span>) {</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="vs">`Histograma con </span><span class="sc">${</span>nPoints<span class="sc">}</span><span class="vs"> puntos`</span><span class="op">,</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>      <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">rectY</span>(filteredData<span class="op">,</span> </span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">binX</span>({<span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span>}<span class="op">,</span> {</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> </span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>            <span class="dt">fill</span><span class="op">:</span> <span class="st">"category"</span><span class="op">,</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>            <span class="dt">stroke</span><span class="op">:</span> <span class="st">"white"</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="vs">`Box Plot con </span><span class="sc">${</span>nPoints<span class="sc">}</span><span class="vs"> puntos`</span><span class="op">,</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>      <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">boxY</span>(filteredData<span class="op">,</span> {</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"category"</span><span class="op">,</span> </span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> </span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"category"</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="estadísticas-en-tiempo-real" class="level2">
+<h2 class="anchored" data-anchor-id="estadísticas-en-tiempo-real">Estadísticas en Tiempo Real</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="117" data-source-offset="-27"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 116;"><span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> {</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> meanX <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(filteredData<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x</span>)<span class="op">;</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> meanY <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(filteredData<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">y</span>)<span class="op">;</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> stdX <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(filteredData<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x</span>)<span class="op">;</span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    <span class="dt">meanX</span><span class="op">:</span> meanX<span class="op">,</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>    <span class="dt">meanY</span><span class="op">:</span> meanY<span class="op">,</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>    <span class="dt">stdX</span><span class="op">:</span> stdX<span class="op">,</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>    <span class="dt">count</span><span class="op">:</span> filteredData<span class="op">.</span><span class="at">length</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="co">// Display statistics</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; margin: 20px 0;"&gt;</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;h3 style="color: #34495e; margin-top: 0;"&gt;📊 Estadísticas&lt;/h3&gt;</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p&gt;&lt;strong&gt;📈 Puntos mostrados:&lt;/strong&gt; </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">count</span><span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p&gt;&lt;strong&gt;📊 Promedio X:&lt;/strong&gt; </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">meanX</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p&gt;&lt;strong&gt;📉 Promedio Y:&lt;/strong&gt; </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">meanY</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p&gt;&lt;strong&gt;🎯 Desviación estándar X:&lt;/strong&gt; </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">stdX</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="datos-en-tabla-interactiva" class="level2">
+<h2 class="anchored" data-anchor-id="datos-en-tabla-interactiva">Datos en Tabla Interactiva</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="145" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 144;"><span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filteredData<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">,</span> {</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [<span class="st">"x"</span><span class="op">,</span> <span class="st">"y"</span><span class="op">,</span> <span class="st">"category"</span>]<span class="op">,</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> {</span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="st">"Valor X"</span><span class="op">,</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> <span class="st">"Valor Y"</span><span class="op">,</span> </span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">category</span><span class="op">:</span> <span class="st">"Categoría"</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> x <span class="kw">=&gt;</span> x<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="op">,</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> y <span class="kw">=&gt;</span> y<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<hr>
+<p><em>Esta aplicación se actualiza automáticamente cuando cambias los controles. ¡Funciona completamente en sitios web estáticos como GitHub Pages!</em></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxyXG4vLyBJbXBvcnQgbGlicmFyaWVzXHJcblBsb3QgPSBpbXBvcnQoXCJodHRwczovL2Nkbi5za3lwYWNrLmRldi9Ab2JzZXJ2YWJsZWhxL3Bsb3RAMC42XCIpXHJcbmQzID0gaW1wb3J0KFwiaHR0cHM6Ly9jZG4uc2t5cGFjay5kZXYvZDNAN1wiKVxyXG5cclxuLy8gR2VuZXJhdGUgc2FtcGxlIGRhdGFcclxuZGF0YSA9IHtcclxuICBjb25zdCBuID0gMTAwO1xyXG4gIHJldHVybiBkMy5yYW5nZShuKS5tYXAoaSA9PiAoe1xyXG4gICAgeDogZDMucmFuZG9tTm9ybWFsKCkoKSxcclxuICAgIHk6IGQzLnJhbmRvbU5vcm1hbCgpKCksXHJcbiAgICBjYXRlZ29yeTogWydBJywgJ0InLCAnQyddW01hdGguZmxvb3IoTWF0aC5yYW5kb20oKSAqIDMpXVxyXG4gIH0pKTtcclxufVxyXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcclxudmlld29mIGNoYXJ0VHlwZSA9IElucHV0cy5zZWxlY3QoXHJcbiAgW1wic2NhdHRlclwiLCBcImhpc3RvZ3JhbVwiLCBcImJveFwiXSwgXHJcbiAge1xyXG4gICAgbGFiZWw6IFwiU2VsZWNjaW9uYSBlbCB0aXBvIGRlIGdyw6FmaWNvOlwiLFxyXG4gICAgdmFsdWU6IFwic2NhdHRlclwiXHJcbiAgfVxyXG4pXHJcblxyXG52aWV3b2YgblBvaW50cyA9IElucHV0cy5yYW5nZShcclxuICBbMTAsIDEwMF0sIFxyXG4gIHtcclxuICAgIGxhYmVsOiBcIk7Dum1lcm8gZGUgcHVudG9zOlwiLFxyXG4gICAgc3RlcDogMTAsXHJcbiAgICB2YWx1ZTogNTBcclxuICB9XHJcbilcclxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXHJcbi8vIEZpbHRlciBkYXRhIGJhc2VkIG9uIHNsaWRlclxyXG5maWx0ZXJlZERhdGEgPSBkYXRhLnNsaWNlKDAsIG5Qb2ludHMpXHJcblxyXG4vLyBDcmVhdGUgZGlmZmVyZW50IGNoYXJ0IHR5cGVzXHJcbmNoYXJ0ID0ge1xyXG4gIGlmIChjaGFydFR5cGUgPT09IFwic2NhdHRlclwiKSB7XHJcbiAgICByZXR1cm4gUGxvdC5wbG90KHtcclxuICAgICAgdGl0bGU6IGBTY2F0dGVyIFBsb3QgY29uICR7blBvaW50c30gcHVudG9zYCxcclxuICAgICAgd2lkdGg6IDY0MCxcclxuICAgICAgaGVpZ2h0OiA0MDAsXHJcbiAgICAgIGNvbG9yOiB7bGVnZW5kOiB0cnVlfSxcclxuICAgICAgbWFya3M6IFtcclxuICAgICAgICBQbG90LmRvdChmaWx0ZXJlZERhdGEsIHtcclxuICAgICAgICAgIHg6IFwieFwiLCBcclxuICAgICAgICAgIHk6IFwieVwiLCBcclxuICAgICAgICAgIGZpbGw6IFwiY2F0ZWdvcnlcIixcclxuICAgICAgICAgIHN0cm9rZTogXCJ3aGl0ZVwiLFxyXG4gICAgICAgICAgc3Ryb2tlV2lkdGg6IDFcclxuICAgICAgICB9KVxyXG4gICAgICBdXHJcbiAgICB9KTtcclxuICB9IGVsc2UgaWYgKGNoYXJ0VHlwZSA9PT0gXCJoaXN0b2dyYW1cIikge1xyXG4gICAgcmV0dXJuIFBsb3QucGxvdCh7XHJcbiAgICAgIHRpdGxlOiBgSGlzdG9ncmFtYSBjb24gJHtuUG9pbnRzfSBwdW50b3NgLFxyXG4gICAgICB3aWR0aDogNjQwLFxyXG4gICAgICBoZWlnaHQ6IDQwMCxcclxuICAgICAgY29sb3I6IHtsZWdlbmQ6IHRydWV9LFxyXG4gICAgICBtYXJrczogW1xyXG4gICAgICAgIFBsb3QucmVjdFkoZmlsdGVyZWREYXRhLCBcclxuICAgICAgICAgIFBsb3QuYmluWCh7eTogXCJjb3VudFwifSwge1xyXG4gICAgICAgICAgICB4OiBcInhcIiwgXHJcbiAgICAgICAgICAgIGZpbGw6IFwiY2F0ZWdvcnlcIixcclxuICAgICAgICAgICAgc3Ryb2tlOiBcIndoaXRlXCJcclxuICAgICAgICAgIH0pXHJcbiAgICAgICAgKVxyXG4gICAgICBdXHJcbiAgICB9KTtcclxuICB9IGVsc2Uge1xyXG4gICAgcmV0dXJuIFBsb3QucGxvdCh7XHJcbiAgICAgIHRpdGxlOiBgQm94IFBsb3QgY29uICR7blBvaW50c30gcHVudG9zYCxcclxuICAgICAgd2lkdGg6IDY0MCxcclxuICAgICAgaGVpZ2h0OiA0MDAsXHJcbiAgICAgIGNvbG9yOiB7bGVnZW5kOiB0cnVlfSxcclxuICAgICAgbWFya3M6IFtcclxuICAgICAgICBQbG90LmJveFkoZmlsdGVyZWREYXRhLCB7XHJcbiAgICAgICAgICB4OiBcImNhdGVnb3J5XCIsIFxyXG4gICAgICAgICAgeTogXCJ5XCIsIFxyXG4gICAgICAgICAgZmlsbDogXCJjYXRlZ29yeVwiXHJcbiAgICAgICAgfSlcclxuICAgICAgXVxyXG4gICAgfSk7XHJcbiAgfVxyXG59XHJcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxyXG4vLyBDYWxjdWxhdGUgc3RhdGlzdGljc1xyXG5zdGF0cyA9IHtcclxuICBjb25zdCBtZWFuWCA9IGQzLm1lYW4oZmlsdGVyZWREYXRhLCBkID0+IGQueCk7XHJcbiAgY29uc3QgbWVhblkgPSBkMy5tZWFuKGZpbHRlcmVkRGF0YSwgZCA9PiBkLnkpO1xyXG4gIGNvbnN0IHN0ZFggPSBkMy5kZXZpYXRpb24oZmlsdGVyZWREYXRhLCBkID0+IGQueCk7XHJcbiAgXHJcbiAgcmV0dXJuIHtcclxuICAgIG1lYW5YOiBtZWFuWCxcclxuICAgIG1lYW5ZOiBtZWFuWSxcclxuICAgIHN0ZFg6IHN0ZFgsXHJcbiAgICBjb3VudDogZmlsdGVyZWREYXRhLmxlbmd0aFxyXG4gIH07XHJcbn1cclxuXHJcbi8vIERpc3BsYXkgc3RhdGlzdGljc1xyXG5odG1sYFxyXG48ZGl2IHN0eWxlPVwiYmFja2dyb3VuZC1jb2xvcjogI2VjZjBmMTsgcGFkZGluZzogMjBweDsgYm9yZGVyLXJhZGl1czogOHB4OyBtYXJnaW46IDIwcHggMDtcIj5cclxuICA8aDMgc3R5bGU9XCJjb2xvcjogIzM0NDk1ZTsgbWFyZ2luLXRvcDogMDtcIj7wn5OKIEVzdGFkw61zdGljYXM8L2gzPlxyXG4gIDxwPjxzdHJvbmc+8J+TiCBQdW50b3MgbW9zdHJhZG9zOjwvc3Ryb25nPiAke3N0YXRzLmNvdW50fTwvcD5cclxuICA8cD48c3Ryb25nPvCfk4ogUHJvbWVkaW8gWDo8L3N0cm9uZz4gJHtzdGF0cy5tZWFuWC50b0ZpeGVkKDIpfTwvcD5cclxuICA8cD48c3Ryb25nPvCfk4kgUHJvbWVkaW8gWTo8L3N0cm9uZz4gJHtzdGF0cy5tZWFuWS50b0ZpeGVkKDIpfTwvcD5cclxuICA8cD48c3Ryb25nPvCfjq8gRGVzdmlhY2nDs24gZXN0w6FuZGFyIFg6PC9zdHJvbmc+ICR7c3RhdHMuc3RkWC50b0ZpeGVkKDIpfTwvcD5cclxuPC9kaXY+XHJcbmBcclxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXHJcbklucHV0cy50YWJsZShmaWx0ZXJlZERhdGEuc2xpY2UoMCwgMTApLCB7XHJcbiAgY29sdW1uczogW1wieFwiLCBcInlcIiwgXCJjYXRlZ29yeVwiXSxcclxuICBoZWFkZXI6IHtcclxuICAgIHg6IFwiVmFsb3IgWFwiLFxyXG4gICAgeTogXCJWYWxvciBZXCIsIFxyXG4gICAgY2F0ZWdvcnk6IFwiQ2F0ZWdvcsOtYVwiXHJcbiAgfSxcclxuICBmb3JtYXQ6IHtcclxuICAgIHg6IHggPT4geC50b0ZpeGVkKDMpLFxyXG4gICAgeTogeSA9PiB5LnRvRml4ZWQoMylcclxuICB9XHJcbn0pXHJcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnY2hhcnRUeXBlJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ25Qb2ludHMnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../posts/welcome 2";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

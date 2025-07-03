@@ -6,7 +6,8 @@
     "about.html": "6f35831b"
   },
   "posts/post-with-code/index.qmd": {
-    "index.html": "1e8ae12b"
+    "index.html": "1e8ae12b",
+    "index.docx": "15f66014"
   },
   "posts/welcome/index.qmd": {
     "index.html": "0c2cf216"
@@ -43,5 +44,26 @@
   },
   "Data_Science.qmd": {
     "Data_Science.html": "f0c5bac0"
+  },
+  "posts/post-with-code - copia/index.qmd": {
+    "index.html": "1d7e2472"
+  },
+  "posts/post-with-code - copia (2)/index.qmd": {
+    "index.html": "7eaa40ae"
+  },
+  "posts/Interactive Histogram with Plotly/index.qmd": {
+    "index.html": "ec7403cb"
+  },
+  "posts/le/index.qmd": {
+    "index.html": "c3b3a546"
+  },
+  "posts/pos/index.qmd": {
+    "index.html": "3a4d8f88"
+  },
+  "posts/we/index.qmd": {
+    "index.html": "913b2525"
+  },
+  "posts/map/index.qmd": {
+    "index.html": "3d8b016d"
   }
 }

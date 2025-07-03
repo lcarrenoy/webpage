@@ -1,15 +1,12 @@
 {
-  "hash": "1f33401b9e665f98090de5cf4a4f3604",
+  "hash": "28b4e113158d5abbe1b55a0f29aec6d5",
   "result": {
-    "engine": "knitr",
-    "markdown": "---\ntitle: \"Post With Code\"\nauthor: \"Harlow Malloc\"\ndate: \"2025-06-30\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n\n",
-    "supporting": [],
-    "filters": [
-      "rmarkdown/pagebreak.lua"
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Matplotlib\"\nformat:\n  html:\n    html-math-method: katex\n    code-tools: true\n    self-contained: true\nexecute:\n  warning: false\njupyter: python3\n---\n\n## Plots - Matplotlib\n\nSee @fig-polar for an example of rendering plots as figures:\n\n::: {#cell-fig-polar .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={'projection': 'polar'})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![A line plot on a polar axis](index_files/figure-html/fig-polar-output-1.png){#fig-polar}\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files\\figure-html"
     ],
-    "includes": {},
-    "engineDependencies": {},
-    "preserve": {},
-    "postProcess": true
+    "filters": [],
+    "includes": {}
   }
 }

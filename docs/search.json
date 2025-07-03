@@ -74,7 +74,7 @@
     "href": "Blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nJun 30, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJun 27, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog 2\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJun 27, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Interactive Scatter Plot\n\n\n\nD3\n\n\n\n\n\n\n\n\n\nJul 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive Map of Lima, Peru\n\n\n\nmap\n\n\n\n\n\n\n\n\n\nJun 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive Histogram with Plotly\n\n\n\nPython\n\nPlotly\n\n\n\n\n\n\n\n\n\nJun 23, 2024\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Data_Science.html",
@@ -177,9 +177,9 @@
   {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "title": "Interactive Histogram with Plotly",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "This is an interactive histogram of the Old Faithful geyser data using Plotly"
   },
   {
     "objectID": "Data_Analyst.html",
@@ -331,15 +331,211 @@
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
+    "title": "Matplotlib",
+    "section": "",
+    "text": "See Figure 1 for an example of rendering plots as figures:\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={'projection': 'polar'})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "posts/welcome 2/index.html",
+    "href": "posts/welcome 2/index.html",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nPlot = import(\"https://cdn.skypack.dev/@observablehq/plot@0.6\")\nd3 = import(\"https://cdn.skypack.dev/d3@7\")\n\n// Generate sample data\ndata = {\n  const n = 100;\n  return d3.range(n).map(i =&gt; ({\n    x: d3.randomNormal()(),\n    y: d3.randomNormal()(),\n    category: ['A', 'B', 'C'][Math.floor(Math.random() * 3)]\n  }));\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nviewof chartType = Inputs.select(\n  [\"scatter\", \"histogram\", \"box\"], \n  {\n    label: \"Selecciona el tipo de gráfico:\",\n    value: \"scatter\"\n  }\n)\n\nviewof nPoints = Inputs.range(\n  [10, 100], \n  {\n    label: \"Número de puntos:\",\n    step: 10,\n    value: 50\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfilteredData = data.slice(0, nPoints)\n\n// Create different chart types\nchart = {\n  if (chartType === \"scatter\") {\n    return Plot.plot({\n      title: `Scatter Plot con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.dot(filteredData, {\n          x: \"x\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"white\",\n          strokeWidth: 1\n        })\n      ]\n    });\n  } else if (chartType === \"histogram\") {\n    return Plot.plot({\n      title: `Histograma con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.rectY(filteredData, \n          Plot.binX({y: \"count\"}, {\n            x: \"x\", \n            fill: \"category\",\n            stroke: \"white\"\n          })\n        )\n      ]\n    });\n  } else {\n    return Plot.plot({\n      title: `Box Plot con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.boxY(filteredData, {\n          x: \"category\", \n          y: \"y\", \n          fill: \"category\"\n        })\n      ]\n    });\n  }\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nstats = {\n  const meanX = d3.mean(filteredData, d =&gt; d.x);\n  const meanY = d3.mean(filteredData, d =&gt; d.y);\n  const stdX = d3.deviation(filteredData, d =&gt; d.x);\n  \n  return {\n    meanX: meanX,\n    meanY: meanY,\n    stdX: stdX,\n    count: filteredData.length\n  };\n}\n\n// Display statistics\nhtml`\n&lt;div style=\"background-color: #ecf0f1; padding: 20px; border-radius: 8px; margin: 20px 0;\"&gt;\n  &lt;h3 style=\"color: #34495e; margin-top: 0;\"&gt;📊 Estadísticas&lt;/h3&gt;\n  &lt;p&gt;&lt;strong&gt;📈 Puntos mostrados:&lt;/strong&gt; ${stats.count}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;📊 Promedio X:&lt;/strong&gt; ${stats.meanX.toFixed(2)}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;📉 Promedio Y:&lt;/strong&gt; ${stats.meanY.toFixed(2)}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;🎯 Desviación estándar X:&lt;/strong&gt; ${stats.stdX.toFixed(2)}&lt;/p&gt;\n&lt;/div&gt;\n`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nInputs.table(filteredData.slice(0, 10), {\n  columns: [\"x\", \"y\", \"category\"],\n  header: {\n    x: \"Valor X\",\n    y: \"Valor Y\", \n    category: \"Categoría\"\n  },\n  format: {\n    x: x =&gt; x.toFixed(3),\n    y: y =&gt; y.toFixed(3)\n  }\n})\n\n\n\n\n\n\n\n\nEsta aplicación se actualiza automáticamente cuando cambias los controles. ¡Funciona completamente en sitios web estáticos como GitHub Pages!"
+  },
+  {
+    "objectID": "posts/welcome/index.html#interactive-histogram-with-plotly",
+    "href": "posts/welcome/index.html#interactive-histogram-with-plotly",
+    "title": "Interactive Histogram with Plotly",
+    "section": "Interactive Histogram with Plotly",
+    "text": "Interactive Histogram with Plotly\nBelow is an interactive histogram of the Old Faithful geyser data using Plotly:"
+  },
+  {
+    "objectID": "posts/welcome/index.html#interactive-data-table",
+    "href": "posts/welcome/index.html#interactive-data-table",
+    "title": "Interactive Histogram with Plotly",
+    "section": "Interactive Data Table",
+    "text": "Interactive Data Table\nExplore the Old Faithful dataset interactively:\n\n\n\n\n\n\n\nSince this post includes an interactive Shiny application, readers can adjust the number of bins and see the histogram update in real-time."
+  },
+  {
+    "objectID": "posts/welcome 2/index.html#controles-interactivos",
+    "href": "posts/welcome 2/index.html#controles-interactivos",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nviewof chartType = Inputs.select(\n  [\"scatter\", \"histogram\", \"box\"], \n  {\n    label: \"Selecciona el tipo de gráfico:\",\n    value: \"scatter\"\n  }\n)\n\nviewof nPoints = Inputs.range(\n  [10, 100], \n  {\n    label: \"Número de puntos:\",\n    step: 10,\n    value: 50\n  }\n)"
+  },
+  {
+    "objectID": "posts/welcome 2/index.html#visualización",
+    "href": "posts/welcome 2/index.html#visualización",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nfilteredData = data.slice(0, nPoints)\n\n// Create different chart types\nchart = {\n  if (chartType === \"scatter\") {\n    return Plot.plot({\n      title: `Scatter Plot con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.dot(filteredData, {\n          x: \"x\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"white\",\n          strokeWidth: 1\n        })\n      ]\n    });\n  } else if (chartType === \"histogram\") {\n    return Plot.plot({\n      title: `Histograma con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.rectY(filteredData, \n          Plot.binX({y: \"count\"}, {\n            x: \"x\", \n            fill: \"category\",\n            stroke: \"white\"\n          })\n        )\n      ]\n    });\n  } else {\n    return Plot.plot({\n      title: `Box Plot con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.boxY(filteredData, {\n          x: \"category\", \n          y: \"y\", \n          fill: \"category\"\n        })\n      ]\n    });\n  }\n}"
+  },
+  {
+    "objectID": "posts/welcome 2/index.html#estadísticas-en-tiempo-real",
+    "href": "posts/welcome 2/index.html#estadísticas-en-tiempo-real",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nstats = {\n  const meanX = d3.mean(filteredData, d =&gt; d.x);\n  const meanY = d3.mean(filteredData, d =&gt; d.y);\n  const stdX = d3.deviation(filteredData, d =&gt; d.x);\n  \n  return {\n    meanX: meanX,\n    meanY: meanY,\n    stdX: stdX,\n    count: filteredData.length\n  };\n}\n\n// Display statistics\nhtml`\n&lt;div style=\"background-color: #ecf0f1; padding: 20px; border-radius: 8px; margin: 20px 0;\"&gt;\n  &lt;h3 style=\"color: #34495e; margin-top: 0;\"&gt;📊 Estadísticas&lt;/h3&gt;\n  &lt;p&gt;&lt;strong&gt;📈 Puntos mostrados:&lt;/strong&gt; ${stats.count}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;📊 Promedio X:&lt;/strong&gt; ${stats.meanX.toFixed(2)}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;📉 Promedio Y:&lt;/strong&gt; ${stats.meanY.toFixed(2)}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;🎯 Desviación estándar X:&lt;/strong&gt; ${stats.stdX.toFixed(2)}&lt;/p&gt;\n&lt;/div&gt;\n`"
+  },
+  {
+    "objectID": "posts/welcome 2/index.html#datos-en-tabla-interactiva",
+    "href": "posts/welcome 2/index.html#datos-en-tabla-interactiva",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nInputs.table(filteredData.slice(0, 10), {\n  columns: [\"x\", \"y\", \"category\"],\n  header: {\n    x: \"Valor X\",\n    y: \"Valor Y\", \n    category: \"Categoría\"\n  },\n  format: {\n    x: x =&gt; x.toFixed(3),\n    y: y =&gt; y.toFixed(3)\n  }\n})\n\n\n\n\n\n\n\n\nEsta aplicación se actualiza automáticamente cuando cambias los controles. ¡Funciona completamente en sitios web estáticos como GitHub Pages!"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#seattle-precipitation-by-day-2012-to-2016",
+    "href": "posts/post-with-code/index.html#seattle-precipitation-by-day-2012-to-2016",
+    "title": "observable plot",
+    "section": "",
+    "text": "Code\ndata = FileAttachment(\"seattle-weather.csv\")\n  .csv({typed: true})\n  \nPlot.plot({\n  width: 800, height: 500, padding: 0,\n  color: { scheme: \"blues\", type: \"sqrt\"},\n  y: { tickFormat: i =&gt; \"JFMAMJJASOND\"[i] },\n  marks: [\n    Plot.cell(data, Plot.group({fill: \"mean\"}, {\n      x: d =&gt; new Date(d.date).getDate(),\n      y: d =&gt; new Date(d.date).getMonth(),\n      fill: \"precipitation\", \n      inset: 0.5\n    }))\n  ]\n})"
+  },
+  {
+    "objectID": "posts/post-with-code - copia (2)/index.html",
+    "href": "posts/post-with-code - copia (2)/index.html",
     "title": "Post With Code",
     "section": "",
     "text": "This is a post with executable code.\n\n\nCode\n1 + 1\n\n\n[1] 2"
   },
   {
-    "objectID": "posts/welcome 2/index.html",
-    "href": "posts/welcome 2/index.html",
-    "title": "Welcome To My Blog 2",
+    "objectID": "posts/post-with-code - copia/index.html",
+    "href": "posts/post-with-code - copia/index.html",
+    "title": "Post With Code",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "This is a post with executable code.\n\n\nCode\n1 + 1\n\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#plots",
+    "href": "posts/post-with-code/index.html#plots",
+    "title": "MS Word",
+    "section": "Plots",
+    "text": "Plots\nSee Figure 1 for an example of rendering plots as figures:\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={'projection': 'polar'})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#plots---matplotlib",
+    "href": "posts/post-with-code/index.html#plots---matplotlib",
+    "title": "Matplotlib",
+    "section": "",
+    "text": "See Figure 1 for an example of rendering plots as figures:\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={'projection': 'polar'})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "posts/Interactive Histogram with Plotly/index.html",
+    "href": "posts/Interactive Histogram with Plotly/index.html",
+    "title": "Interactive Histogram with Plotly",
+    "section": "",
+    "text": "This is an interactive histogram of the Old Faithful geyser data using Plotly"
+  },
+  {
+    "objectID": "posts/Interactive Histogram with Plotly/index.html#interactive-histogram-with-plotly",
+    "href": "posts/Interactive Histogram with Plotly/index.html#interactive-histogram-with-plotly",
+    "title": "Interactive Histogram with Plotly",
+    "section": "Interactive Histogram with Plotly",
+    "text": "Interactive Histogram with Plotly\nBelow is an interactive histogram of the Old Faithful geyser data using Plotly:"
+  },
+  {
+    "objectID": "posts/Interactive Histogram with Plotly/index.html#interactive-data-table",
+    "href": "posts/Interactive Histogram with Plotly/index.html#interactive-data-table",
+    "title": "Interactive Histogram with Plotly",
+    "section": "Interactive Data Table",
+    "text": "Interactive Data Table\nExplore the Old Faithful dataset interactively:\n\n\n\n\n\n\nSince this post includes an interactive Shiny application, readers can adjust the number of bins and see the histogram update in real-time."
+  },
+  {
+    "objectID": "posts/we/index.html",
+    "href": "posts/we/index.html",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "This application allows you to explore different types of data visualizations interactively using Observable JS.\n\n\nCode\nPlot = import(\"https://cdn.skypack.dev/@observablehq/plot@0.6\")\nd3 = import(\"https://cdn.skypack.dev/d3@7\")\n\n// Generate sample data\ndata = {\n  const n = 100;\n  return d3.range(n).map(i =&gt; ({\n    x: d3.randomNormal()(),\n    y: d3.randomNormal()(),\n    category: ['Category A', 'Category B', 'Category C'][Math.floor(Math.random() * 3)]\n  }));\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse these controls to customize the visualization:\n\n\nCode\nviewof chartType = Inputs.select(\n  [\"scatter\", \"histogram\", \"box\"], \n  {\n    label: \"🎨 Select chart type:\",\n    value: \"scatter\",\n    format: x =&gt; ({\n      scatter: \"📊 Scatter Plot\",\n      histogram: \"📈 Histogram\", \n      box: \"📦 Box Plot\"\n    })[x]\n  }\n)\n\nviewof nPoints = Inputs.range(\n  [10, 100], \n  {\n    label: \"🔢 Number of points:\",\n    step: 10,\n    value: 50\n  }\n)\n\nviewof selectedCategory = Inputs.select(\n  [\"All\", \"Category A\", \"Category B\", \"Category C\"],\n  {\n    label: \"🏷️ Filter by category:\",\n    value: \"All\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe chart updates automatically based on your selections:\n\n\nCode\nfilteredData = {\n  let filtered = data.slice(0, nPoints);\n  if (selectedCategory !== \"All\") {\n    filtered = filtered.filter(d =&gt; d.category === selectedCategory);\n  }\n  return filtered;\n}\n\n// Create different chart types\nchart = {\n  if (chartType === \"scatter\") {\n    return Plot.plot({\n      title: `Scatter Plot with ${filteredData.length} points`,\n      subtitle: selectedCategory === \"All\" ? \"All categories\" : selectedCategory,\n      width: 680,\n      height: 450,\n      color: {legend: true, scheme: \"category10\"},\n      grid: true,\n      marks: [\n        Plot.dot(filteredData, {\n          x: \"x\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"white\",\n          strokeWidth: 1.5,\n          r: 4,\n          tip: true\n        })\n      ]\n    });\n  } else if (chartType === \"histogram\") {\n    return Plot.plot({\n      title: `Histogram with ${filteredData.length} points`,\n      subtitle: \"Distribution of X values\",\n      width: 680,\n      height: 450,\n      color: {legend: true, scheme: \"category10\"},\n      marks: [\n        Plot.rectY(filteredData, \n          Plot.binX({y: \"count\"}, {\n            x: \"x\", \n            fill: \"category\",\n            stroke: \"white\",\n            strokeWidth: 1\n          })\n        ),\n        Plot.ruleY([0])\n      ]\n    });\n  } else {\n    return Plot.plot({\n      title: `Box Plot with ${filteredData.length} points`,\n      subtitle: \"Distribution by category\",\n      width: 680,\n      height: 450,\n      color: {legend: true, scheme: \"category10\"},\n      marks: [\n        Plot.boxY(filteredData, {\n          x: \"category\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"black\"\n        })\n      ]\n    });\n  }\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics are automatically updated with filtered data:\n\n\nCode\nstats = {\n  if (filteredData.length === 0) {\n    return {\n      meanX: 0,\n      meanY: 0,\n      stdX: 0,\n      stdY: 0,\n      count: 0,\n      correlation: 0\n    };\n  }\n  \n  const meanX = d3.mean(filteredData, d =&gt; d.x);\n  const meanY = d3.mean(filteredData, d =&gt; d.y);\n  const stdX = d3.deviation(filteredData, d =&gt; d.x);\n  const stdY = d3.deviation(filteredData, d =&gt; d.y);\n  \n  // Calculate correlation\n  const n = filteredData.length;\n  const sumXY = d3.sum(filteredData, d =&gt; (d.x - meanX) * (d.y - meanY));\n  const sumX2 = d3.sum(filteredData, d =&gt; Math.pow(d.x - meanX, 2));\n  const sumY2 = d3.sum(filteredData, d =&gt; Math.pow(d.y - meanY, 2));\n  const correlation = sumXY / Math.sqrt(sumX2 * sumY2);\n  \n  return {\n    meanX: meanX,\n    meanY: meanY,\n    stdX: stdX,\n    stdY: stdY,\n    count: filteredData.length,\n    correlation: correlation || 0\n  };\n}\n\n// Display statistics with improved styling\nhtml`\n&lt;div style=\"\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  color: white;\n  padding: 25px;\n  border-radius: 12px;\n  margin: 25px 0;\n  box-shadow: 0 8px 25px rgba(0,0,0,0.15);\n\"&gt;\n  &lt;h3 style=\"color: white; margin-top: 0; font-size: 1.4em; margin-bottom: 20px;\"&gt;\n    📊 Descriptive Statistics\n  &lt;/h3&gt;\n  &lt;div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;\"&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;📈 Points displayed:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.count}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;📊 Mean X:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.meanX.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;📉 Mean Y:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.meanY.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;🎯 Std Dev X:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.stdX.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;🎯 Std Dev Y:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.stdY.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;🔗 Correlation:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.correlation.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\ncategoryStats = {\n  const categories = d3.group(filteredData, d =&gt; d.category);\n  return Array.from(categories, ([key, values]) =&gt; ({\n    category: key,\n    count: values.length,\n    percentage: (values.length / filteredData.length * 100).toFixed(1)\n  }));\n}\n\nhtml`\n&lt;div style=\"\n  background-color: #f8f9fa;\n  border: 2px solid #e9ecef;\n  border-radius: 10px;\n  padding: 20px;\n  margin: 20px 0;\n\"&gt;\n  &lt;h4 style=\"color: #495057; margin-top: 0;\"&gt;📊 Distribution by Categories&lt;/h4&gt;\n  ${categoryStats.map(cat =&gt; `\n    &lt;div style=\"\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      padding: 10px;\n      margin: 5px 0;\n      background: white;\n      border-radius: 6px;\n      border-left: 4px solid #007bff;\n    \"&gt;\n      &lt;span style=\"font-weight: bold;\"&gt;${cat.category}&lt;/span&gt;\n      &lt;span&gt;${cat.count} points (${cat.percentage}%)&lt;/span&gt;\n    &lt;/div&gt;\n  `).join('')}\n&lt;/div&gt;\n`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExplore the first filtered data points in detail:\n\n\nCode\nInputs.table(filteredData.slice(0, 15), {\n  columns: [\"x\", \"y\", \"category\"],\n  header: {\n    x: \"X Value\",\n    y: \"Y Value\", \n    category: \"Category\"\n  },\n  format: {\n    x: x =&gt; x.toFixed(4),\n    y: y =&gt; y.toFixed(4)\n  },\n  layout: \"auto\",\n  width: {\n    x: 120,\n    y: 120,\n    category: 150\n  }\n})\n\n\n\n\n\n\n\n\n\n\n\n\nThis interactive application demonstrates Observable JS for creating dynamic visualizations. Features include:\n\n🎨 Multiple chart types: Scatter, histogram, and box plots\n🔧 Interactive controls: Sliders and selectors to customize the view\n📊 Real-time statistics: Automatic calculations that update with filters\n📱 Responsive design: Interface that adapts to different screen sizes\n🎯 Category filtering: Ability to explore data subsets\n\n\n\n\n\nObservable JS: For interactivity\nObservable Plot: For visualizations\nD3.js: For data manipulation and statistics"
+  },
+  {
+    "objectID": "posts/we/index.html#controles-interactivos",
+    "href": "posts/we/index.html#controles-interactivos",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nviewof chartType = Inputs.select(\n  [\"scatter\", \"histogram\", \"box\"], \n  {\n    label: \"Selecciona el tipo de gráfico:\",\n    value: \"scatter\"\n  }\n)\n\nviewof nPoints = Inputs.range(\n  [10, 100], \n  {\n    label: \"Número de puntos:\",\n    step: 10,\n    value: 50\n  }\n)"
+  },
+  {
+    "objectID": "posts/we/index.html#visualización",
+    "href": "posts/we/index.html#visualización",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nfilteredData = data.slice(0, nPoints)\n\n// Create different chart types\nchart = {\n  if (chartType === \"scatter\") {\n    return Plot.plot({\n      title: `Scatter Plot con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.dot(filteredData, {\n          x: \"x\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"white\",\n          strokeWidth: 1\n        })\n      ]\n    });\n  } else if (chartType === \"histogram\") {\n    return Plot.plot({\n      title: `Histograma con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.rectY(filteredData, \n          Plot.binX({y: \"count\"}, {\n            x: \"x\", \n            fill: \"category\",\n            stroke: \"white\"\n          })\n        )\n      ]\n    });\n  } else {\n    return Plot.plot({\n      title: `Box Plot con ${nPoints} puntos`,\n      width: 640,\n      height: 400,\n      color: {legend: true},\n      marks: [\n        Plot.boxY(filteredData, {\n          x: \"category\", \n          y: \"y\", \n          fill: \"category\"\n        })\n      ]\n    });\n  }\n}"
+  },
+  {
+    "objectID": "posts/we/index.html#estadísticas-en-tiempo-real",
+    "href": "posts/we/index.html#estadísticas-en-tiempo-real",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nstats = {\n  const meanX = d3.mean(filteredData, d =&gt; d.x);\n  const meanY = d3.mean(filteredData, d =&gt; d.y);\n  const stdX = d3.deviation(filteredData, d =&gt; d.x);\n  \n  return {\n    meanX: meanX,\n    meanY: meanY,\n    stdX: stdX,\n    count: filteredData.length\n  };\n}\n\n// Display statistics\nhtml`\n&lt;div style=\"background-color: #ecf0f1; padding: 20px; border-radius: 8px; margin: 20px 0;\"&gt;\n  &lt;h3 style=\"color: #34495e; margin-top: 0;\"&gt;📊 Estadísticas&lt;/h3&gt;\n  &lt;p&gt;&lt;strong&gt;📈 Puntos mostrados:&lt;/strong&gt; ${stats.count}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;📊 Promedio X:&lt;/strong&gt; ${stats.meanX.toFixed(2)}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;📉 Promedio Y:&lt;/strong&gt; ${stats.meanY.toFixed(2)}&lt;/p&gt;\n  &lt;p&gt;&lt;strong&gt;🎯 Desviación estándar X:&lt;/strong&gt; ${stats.stdX.toFixed(2)}&lt;/p&gt;\n&lt;/div&gt;\n`"
+  },
+  {
+    "objectID": "posts/we/index.html#datos-en-tabla-interactiva",
+    "href": "posts/we/index.html#datos-en-tabla-interactiva",
+    "title": "Mi Dashboard Interactivo",
+    "section": "",
+    "text": "Code\nInputs.table(filteredData.slice(0, 10), {\n  columns: [\"x\", \"y\", \"category\"],\n  header: {\n    x: \"Valor X\",\n    y: \"Valor Y\", \n    category: \"Categoría\"\n  },\n  format: {\n    x: x =&gt; x.toFixed(3),\n    y: y =&gt; y.toFixed(3)\n  }\n})\n\n\n\n\n\n\n\n\nEsta aplicación se actualiza automáticamente cuando cambias los controles. ¡Funciona completamente en sitios web estáticos como GitHub Pages!"
+  },
+  {
+    "objectID": "posts/le/index.html",
+    "href": "posts/le/index.html",
+    "title": "Interactive Map of Lima, Peru",
+    "section": "",
+    "text": "Code\nfrom ipyleaflet import Map, Marker, basemaps\n\n# Create the map with corrected configuration for Lima, Peru\nm = Map(\n    basemap=basemaps.OpenStreetMap.Mapnik,  # Using reliable OpenStreetMap basemap\n    center=(-12.0464, -77.0428),  # Lima city coordinates\n    zoom=12\n)\n\n# Add marker at Lima city center\nm.add_layer(Marker(location=(-12.0464, -77.0428)))\n\n# Display the map\nm"
+  },
+  {
+    "objectID": "posts/pos/index.html",
+    "href": "posts/pos/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n\nCode\n1 + 1\n\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/we/index.html#interactive-controls",
+    "href": "posts/we/index.html#interactive-controls",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "Use these controls to customize the visualization:\n\n\nCode\nviewof chartType = Inputs.select(\n  [\"scatter\", \"histogram\", \"box\"], \n  {\n    label: \"🎨 Select chart type:\",\n    value: \"scatter\",\n    format: x =&gt; ({\n      scatter: \"📊 Scatter Plot\",\n      histogram: \"📈 Histogram\", \n      box: \"📦 Box Plot\"\n    })[x]\n  }\n)\n\nviewof nPoints = Inputs.range(\n  [10, 100], \n  {\n    label: \"🔢 Number of points:\",\n    step: 10,\n    value: 50\n  }\n)\n\nviewof selectedCategory = Inputs.select(\n  [\"All\", \"Category A\", \"Category B\", \"Category C\"],\n  {\n    label: \"🏷️ Filter by category:\",\n    value: \"All\"\n  }\n)"
+  },
+  {
+    "objectID": "posts/we/index.html#dynamic-visualization",
+    "href": "posts/we/index.html#dynamic-visualization",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "The chart updates automatically based on your selections:\n\n\nCode\nfilteredData = {\n  let filtered = data.slice(0, nPoints);\n  if (selectedCategory !== \"All\") {\n    filtered = filtered.filter(d =&gt; d.category === selectedCategory);\n  }\n  return filtered;\n}\n\n// Create different chart types\nchart = {\n  if (chartType === \"scatter\") {\n    return Plot.plot({\n      title: `Scatter Plot with ${filteredData.length} points`,\n      subtitle: selectedCategory === \"All\" ? \"All categories\" : selectedCategory,\n      width: 680,\n      height: 450,\n      color: {legend: true, scheme: \"category10\"},\n      grid: true,\n      marks: [\n        Plot.dot(filteredData, {\n          x: \"x\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"white\",\n          strokeWidth: 1.5,\n          r: 4,\n          tip: true\n        })\n      ]\n    });\n  } else if (chartType === \"histogram\") {\n    return Plot.plot({\n      title: `Histogram with ${filteredData.length} points`,\n      subtitle: \"Distribution of X values\",\n      width: 680,\n      height: 450,\n      color: {legend: true, scheme: \"category10\"},\n      marks: [\n        Plot.rectY(filteredData, \n          Plot.binX({y: \"count\"}, {\n            x: \"x\", \n            fill: \"category\",\n            stroke: \"white\",\n            strokeWidth: 1\n          })\n        ),\n        Plot.ruleY([0])\n      ]\n    });\n  } else {\n    return Plot.plot({\n      title: `Box Plot with ${filteredData.length} points`,\n      subtitle: \"Distribution by category\",\n      width: 680,\n      height: 450,\n      color: {legend: true, scheme: \"category10\"},\n      marks: [\n        Plot.boxY(filteredData, {\n          x: \"category\", \n          y: \"y\", \n          fill: \"category\",\n          stroke: \"black\"\n        })\n      ]\n    });\n  }\n}"
+  },
+  {
+    "objectID": "posts/we/index.html#real-time-statistics",
+    "href": "posts/we/index.html#real-time-statistics",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "Statistics are automatically updated with filtered data:\n\n\nCode\nstats = {\n  if (filteredData.length === 0) {\n    return {\n      meanX: 0,\n      meanY: 0,\n      stdX: 0,\n      stdY: 0,\n      count: 0,\n      correlation: 0\n    };\n  }\n  \n  const meanX = d3.mean(filteredData, d =&gt; d.x);\n  const meanY = d3.mean(filteredData, d =&gt; d.y);\n  const stdX = d3.deviation(filteredData, d =&gt; d.x);\n  const stdY = d3.deviation(filteredData, d =&gt; d.y);\n  \n  // Calculate correlation\n  const n = filteredData.length;\n  const sumXY = d3.sum(filteredData, d =&gt; (d.x - meanX) * (d.y - meanY));\n  const sumX2 = d3.sum(filteredData, d =&gt; Math.pow(d.x - meanX, 2));\n  const sumY2 = d3.sum(filteredData, d =&gt; Math.pow(d.y - meanY, 2));\n  const correlation = sumXY / Math.sqrt(sumX2 * sumY2);\n  \n  return {\n    meanX: meanX,\n    meanY: meanY,\n    stdX: stdX,\n    stdY: stdY,\n    count: filteredData.length,\n    correlation: correlation || 0\n  };\n}\n\n// Display statistics with improved styling\nhtml`\n&lt;div style=\"\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  color: white;\n  padding: 25px;\n  border-radius: 12px;\n  margin: 25px 0;\n  box-shadow: 0 8px 25px rgba(0,0,0,0.15);\n\"&gt;\n  &lt;h3 style=\"color: white; margin-top: 0; font-size: 1.4em; margin-bottom: 20px;\"&gt;\n    📊 Descriptive Statistics\n  &lt;/h3&gt;\n  &lt;div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;\"&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;📈 Points displayed:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.count}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;📊 Mean X:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.meanX.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;📉 Mean Y:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.meanY.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;🎯 Std Dev X:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.stdX.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;🎯 Std Dev Y:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.stdY.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n    &lt;div style=\"background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;\"&gt;\n      &lt;p style=\"margin: 0;\"&gt;&lt;strong&gt;🔗 Correlation:&lt;/strong&gt;&lt;/p&gt;\n      &lt;p style=\"margin: 5px 0 0 0; font-size: 1.2em;\"&gt;${stats.correlation.toFixed(3)}&lt;/p&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n`"
+  },
+  {
+    "objectID": "posts/we/index.html#category-distribution",
+    "href": "posts/we/index.html#category-distribution",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "Code\ncategoryStats = {\n  const categories = d3.group(filteredData, d =&gt; d.category);\n  return Array.from(categories, ([key, values]) =&gt; ({\n    category: key,\n    count: values.length,\n    percentage: (values.length / filteredData.length * 100).toFixed(1)\n  }));\n}\n\nhtml`\n&lt;div style=\"\n  background-color: #f8f9fa;\n  border: 2px solid #e9ecef;\n  border-radius: 10px;\n  padding: 20px;\n  margin: 20px 0;\n\"&gt;\n  &lt;h4 style=\"color: #495057; margin-top: 0;\"&gt;📊 Distribution by Categories&lt;/h4&gt;\n  ${categoryStats.map(cat =&gt; `\n    &lt;div style=\"\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      padding: 10px;\n      margin: 5px 0;\n      background: white;\n      border-radius: 6px;\n      border-left: 4px solid #007bff;\n    \"&gt;\n      &lt;span style=\"font-weight: bold;\"&gt;${cat.category}&lt;/span&gt;\n      &lt;span&gt;${cat.count} points (${cat.percentage}%)&lt;/span&gt;\n    &lt;/div&gt;\n  `).join('')}\n&lt;/div&gt;\n`"
+  },
+  {
+    "objectID": "posts/we/index.html#interactive-data-table",
+    "href": "posts/we/index.html#interactive-data-table",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "Explore the first filtered data points in detail:\n\n\nCode\nInputs.table(filteredData.slice(0, 15), {\n  columns: [\"x\", \"y\", \"category\"],\n  header: {\n    x: \"X Value\",\n    y: \"Y Value\", \n    category: \"Category\"\n  },\n  format: {\n    x: x =&gt; x.toFixed(4),\n    y: y =&gt; y.toFixed(4)\n  },\n  layout: \"auto\",\n  width: {\n    x: 120,\n    y: 120,\n    category: 150\n  }\n})"
+  },
+  {
+    "objectID": "posts/we/index.html#additional-information",
+    "href": "posts/we/index.html#additional-information",
+    "title": "Interactive Scatter Plot",
+    "section": "",
+    "text": "This interactive application demonstrates Observable JS for creating dynamic visualizations. Features include:\n\n🎨 Multiple chart types: Scatter, histogram, and box plots\n🔧 Interactive controls: Sliders and selectors to customize the view\n📊 Real-time statistics: Automatic calculations that update with filters\n📱 Responsive design: Interface that adapts to different screen sizes\n🎯 Category filtering: Ability to explore data subsets\n\n\n\n\n\nObservable JS: For interactivity\nObservable Plot: For visualizations\nD3.js: For data manipulation and statistics"
+  },
+  {
+    "objectID": "posts/map/index.html",
+    "href": "posts/map/index.html",
+    "title": "Interactive Map of Lima, Peru",
+    "section": "",
+    "text": "Code\nfrom ipyleaflet import Map, Marker, basemaps\n\n# Create the map with corrected configuration for Lima, Peru\nm = Map(\n    basemap=basemaps.OpenStreetMap.Mapnik,  # Using reliable OpenStreetMap basemap\n    center=(-12.0464, -77.0428),  # Lima city coordinates\n    zoom=12\n)\n\n# Add marker at Lima city center\nm.add_layer(Marker(location=(-12.0464, -77.0428)))\n\n# Display the map\nm"
   }
 ]

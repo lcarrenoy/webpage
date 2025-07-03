@@ -1,0 +1,24 @@
+---
+title: "Interactive Map of Lima, Peru"
+date: "2024-06-30"
+categories: [map]
+image: "map.jpg"
+---
+
+```{python}
+from ipyleaflet import Map, Marker, basemaps
+
+# Create the map with corrected configuration for Lima, Peru
+m = Map(
+    basemap=basemaps.OpenStreetMap.Mapnik,  # Using reliable OpenStreetMap basemap
+    center=(-12.0464, -77.0428),  # Lima city coordinates
+    zoom=12
+)
+
+# Add marker at Lima city center
+m.add_layer(Marker(location=(-12.0464, -77.0428)))
+
+# Display the map
+m
+```
+

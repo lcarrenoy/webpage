@@ -1,0 +1,53 @@
+---
+title: "Interactive Histogram with Plotly"
+categories: [Python,Plotly]
+image: "old.png"
+date: "2024-06-23"
+
+---
+
+This is an interactive histogram of the Old Faithful geyser data using Plotly
+
+```{r}
+#| echo: false
+#| warning: false
+library(plotly)
+library(DT)
+```
+
+## Interactive Histogram with Plotly
+
+Below is an interactive histogram of the Old Faithful geyser data using Plotly:
+
+```{r}
+#| echo: false
+library(plotly)
+
+# Create interactive histogram
+p <- plot_ly(x = ~faithful$waiting, type = "histogram", 
+             nbinsx = 30,
+             marker = list(color = "darkgray", line = list(color = "white", width = 1))) %>%
+  layout(title = "Histogram of Waiting Times",
+         xaxis = list(title = "Waiting time to next eruption (in mins)"),
+         yaxis = list(title = "Frequency"))
+
+p
+```
+
+## Interactive Data Table
+
+Explore the Old Faithful dataset interactively:
+
+```{r}
+#| echo: false
+library(DT)
+
+datatable(faithful, 
+          options = list(pageLength = 10, scrollX = TRUE),
+          caption = "Old Faithful Geyser Data") %>%
+  formatRound(columns = c('eruptions', 'waiting'), digits = 2)
+```
+
+
+
+Since this post includes an interactive Shiny application, readers can adjust the number of bins and see the histogram update in real-time.

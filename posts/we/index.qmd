@@ -1,0 +1,318 @@
+---
+title: "Interactive Scatter Plot"
+categories: [D3]
+date: "2024-07-01"
+image: "scatter.jpg"
+format: 
+  html:
+    toc: true
+    code-tools: true
+    self-contained: true
+---
+
+# Interactive Data Visualization App
+
+This application allows you to explore different types of data visualizations interactively using Observable JS.
+
+```{ojs}
+//| echo: false
+// Import necessary libraries
+Plot = import("https://cdn.skypack.dev/@observablehq/plot@0.6")
+d3 = import("https://cdn.skypack.dev/d3@7")
+
+// Generate sample data
+data = {
+  const n = 100;
+  return d3.range(n).map(i => ({
+    x: d3.randomNormal()(),
+    y: d3.randomNormal()(),
+    category: ['Category A', 'Category B', 'Category C'][Math.floor(Math.random() * 3)]
+  }));
+}
+```
+
+## Interactive Controls
+
+Use these controls to customize the visualization:
+
+```{ojs}
+//| echo: false
+viewof chartType = Inputs.select(
+  ["scatter", "histogram", "box"], 
+  {
+    label: "🎨 Select chart type:",
+    value: "scatter",
+    format: x => ({
+      scatter: "📊 Scatter Plot",
+      histogram: "📈 Histogram", 
+      box: "📦 Box Plot"
+    })[x]
+  }
+)
+
+viewof nPoints = Inputs.range(
+  [10, 100], 
+  {
+    label: "🔢 Number of points:",
+    step: 10,
+    value: 50
+  }
+)
+
+viewof selectedCategory = Inputs.select(
+  ["All", "Category A", "Category B", "Category C"],
+  {
+    label: "🏷️ Filter by category:",
+    value: "All"
+  }
+)
+```
+
+## Dynamic Visualization
+
+The chart updates automatically based on your selections:
+
+```{ojs}
+//| echo: false
+// Filter data based on controls
+filteredData = {
+  let filtered = data.slice(0, nPoints);
+  if (selectedCategory !== "All") {
+    filtered = filtered.filter(d => d.category === selectedCategory);
+  }
+  return filtered;
+}
+
+// Create different chart types
+chart = {
+  if (chartType === "scatter") {
+    return Plot.plot({
+      title: `Scatter Plot with ${filteredData.length} points`,
+      subtitle: selectedCategory === "All" ? "All categories" : selectedCategory,
+      width: 680,
+      height: 450,
+      color: {legend: true, scheme: "category10"},
+      grid: true,
+      marks: [
+        Plot.dot(filteredData, {
+          x: "x", 
+          y: "y", 
+          fill: "category",
+          stroke: "white",
+          strokeWidth: 1.5,
+          r: 4,
+          tip: true
+        })
+      ]
+    });
+  } else if (chartType === "histogram") {
+    return Plot.plot({
+      title: `Histogram with ${filteredData.length} points`,
+      subtitle: "Distribution of X values",
+      width: 680,
+      height: 450,
+      color: {legend: true, scheme: "category10"},
+      marks: [
+        Plot.rectY(filteredData, 
+          Plot.binX({y: "count"}, {
+            x: "x", 
+            fill: "category",
+            stroke: "white",
+            strokeWidth: 1
+          })
+        ),
+        Plot.ruleY([0])
+      ]
+    });
+  } else {
+    return Plot.plot({
+      title: `Box Plot with ${filteredData.length} points`,
+      subtitle: "Distribution by category",
+      width: 680,
+      height: 450,
+      color: {legend: true, scheme: "category10"},
+      marks: [
+        Plot.boxY(filteredData, {
+          x: "category", 
+          y: "y", 
+          fill: "category",
+          stroke: "black"
+        })
+      ]
+    });
+  }
+}
+```
+
+## Real-time Statistics
+
+Statistics are automatically updated with filtered data:
+
+```{ojs}
+//| echo: false
+// Calculate statistics
+stats = {
+  if (filteredData.length === 0) {
+    return {
+      meanX: 0,
+      meanY: 0,
+      stdX: 0,
+      stdY: 0,
+      count: 0,
+      correlation: 0
+    };
+  }
+  
+  const meanX = d3.mean(filteredData, d => d.x);
+  const meanY = d3.mean(filteredData, d => d.y);
+  const stdX = d3.deviation(filteredData, d => d.x);
+  const stdY = d3.deviation(filteredData, d => d.y);
+  
+  // Calculate correlation
+  const n = filteredData.length;
+  const sumXY = d3.sum(filteredData, d => (d.x - meanX) * (d.y - meanY));
+  const sumX2 = d3.sum(filteredData, d => Math.pow(d.x - meanX, 2));
+  const sumY2 = d3.sum(filteredData, d => Math.pow(d.y - meanY, 2));
+  const correlation = sumXY / Math.sqrt(sumX2 * sumY2);
+  
+  return {
+    meanX: meanX,
+    meanY: meanY,
+    stdX: stdX,
+    stdY: stdY,
+    count: filteredData.length,
+    correlation: correlation || 0
+  };
+}
+
+// Display statistics with improved styling
+html`
+<div style="
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin: 25px 0;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+">
+  <h3 style="color: white; margin-top: 0; font-size: 1.4em; margin-bottom: 20px;">
+    📊 Descriptive Statistics
+  </h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+      <p style="margin: 0;"><strong>📈 Points displayed:</strong></p>
+      <p style="margin: 5px 0 0 0; font-size: 1.2em;">${stats.count}</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+      <p style="margin: 0;"><strong>📊 Mean X:</strong></p>
+      <p style="margin: 5px 0 0 0; font-size: 1.2em;">${stats.meanX.toFixed(3)}</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+      <p style="margin: 0;"><strong>📉 Mean Y:</strong></p>
+      <p style="margin: 5px 0 0 0; font-size: 1.2em;">${stats.meanY.toFixed(3)}</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+      <p style="margin: 0;"><strong>🎯 Std Dev X:</strong></p>
+      <p style="margin: 5px 0 0 0; font-size: 1.2em;">${stats.stdX.toFixed(3)}</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+      <p style="margin: 0;"><strong>🎯 Std Dev Y:</strong></p>
+      <p style="margin: 5px 0 0 0; font-size: 1.2em;">${stats.stdY.toFixed(3)}</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+      <p style="margin: 0;"><strong>🔗 Correlation:</strong></p>
+      <p style="margin: 5px 0 0 0; font-size: 1.2em;">${stats.correlation.toFixed(3)}</p>
+    </div>
+  </div>
+</div>
+`
+```
+
+## Category Distribution
+
+```{ojs}
+//| echo: false
+// Count elements by category
+categoryStats = {
+  const categories = d3.group(filteredData, d => d.category);
+  return Array.from(categories, ([key, values]) => ({
+    category: key,
+    count: values.length,
+    percentage: (values.length / filteredData.length * 100).toFixed(1)
+  }));
+}
+
+html`
+<div style="
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+">
+  <h4 style="color: #495057; margin-top: 0;">📊 Distribution by Categories</h4>
+  ${categoryStats.map(cat => `
+    <div style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin: 5px 0;
+      background: white;
+      border-radius: 6px;
+      border-left: 4px solid #007bff;
+    ">
+      <span style="font-weight: bold;">${cat.category}</span>
+      <span>${cat.count} points (${cat.percentage}%)</span>
+    </div>
+  `).join('')}
+</div>
+`
+```
+
+## Interactive Data Table
+
+Explore the first filtered data points in detail:
+
+```{ojs}
+//| echo: false
+Inputs.table(filteredData.slice(0, 15), {
+  columns: ["x", "y", "category"],
+  header: {
+    x: "X Value",
+    y: "Y Value", 
+    category: "Category"
+  },
+  format: {
+    x: x => x.toFixed(4),
+    y: y => y.toFixed(4)
+  },
+  layout: "auto",
+  width: {
+    x: 120,
+    y: 120,
+    category: 150
+  }
+})
+```
+
+## Additional Information
+
+### About this Application
+
+This interactive application demonstrates Observable JS for creating dynamic visualizations. Features include:
+
+- **🎨 Multiple chart types**: Scatter, histogram, and box plots
+- **🔧 Interactive controls**: Sliders and selectors to customize the view
+- **📊 Real-time statistics**: Automatic calculations that update with filters
+- **📱 Responsive design**: Interface that adapts to different screen sizes
+- **🎯 Category filtering**: Ability to explore data subsets
+
+### Technologies Used
+
+- **Observable JS**: For interactivity
+- **Observable Plot**: For visualizations
+- **D3.js**: For data manipulation and statistics
+
+---
+
