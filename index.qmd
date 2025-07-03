@@ -1,6 +1,6 @@
 ---
 title: "Luis Carreño"
-image: luis.jpg
+image: luis.JPG
 resources: Resume.pdf
 about: 
   template:   trestles
