@@ -48,4 +48,4 @@ format:
 
 **Software & Tools:** Power Query \| R \| Excel \| BigQuery \| PostgreSQL \| Power BI \| Tableau \| Looker Studio \| Google Cloud \| OpenAI API \| AI Google Studio \| LangChain \| AWS.
 
----
+------------------------------------------------------------------------
